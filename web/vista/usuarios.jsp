@@ -46,7 +46,7 @@
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana usuarios -->
                 <div class="info">
-                    PRUEBA USUARIO
+                    PRUEBA USUARIOS1
                 </div>
             </div>
         </div>
