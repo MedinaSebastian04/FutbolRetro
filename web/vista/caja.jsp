@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Modelo.Usuario" %>
 <%
-    String tipoCuenta = "admin";
+    // Obtener el valor del rol desde el alcance de sesión
+    String rol = (String) session.getAttribute("rol");
 
 %>
 <!DOCTYPE html>
@@ -8,9 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="../css/indexCSS.css">
-        <title>Futbol Retro - Caja</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="../css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/cajaCSS.css" rel="stylesheet" type="text/css"/>
+        <title>Futbol Retro - Caja</title>
     </head>
     <body>
         <div class="container-fuera">
@@ -19,7 +22,7 @@
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
                     <% 
-                        if (tipoCuenta=="admin"){
+                        if (rol.equals("administrador")){
                     %>
                     <!-- Esto es el menu de administrador -->
                     <%@ include file="menuAdmin.jsp" %>
@@ -35,7 +38,7 @@
                     %>
                     
                     <div class="exit">
-                        <a href="login.jsp">
+                        <a href="../login.jsp">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
                             <p>SALIR</p>
                         </a>
@@ -48,32 +51,10 @@
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana caja -->
                 <div class="info">
                     <!--AVISAN PLIS SI ESTA BIEN :'( -->
-                        
-                <style>
-                        table {
-                            width: 100%;
-                            border-collapse: collapse;
-                        }
-
-                        table, th, td {
-                            border: 1px solid black;
-                            padding: 8px;
-                            text-align: left;
-                        }
-
-                        th {
-                            background-color: #f2f2f2;
-                        }
-
-                        /* Ajustar el tamaño de la fuente en el formulario */
-                        #formulario-venta label,
-                        #formulario-venta input {
-                            font-size: 14px;
-                        }
-                    </style>
-                    
+                                
                 <div class="container">
                         <h2 class="text-center">Registro de Ventas</h2>
+                        
                         <div class="row">
                             <!-- Formulario de venta en el lado izquierdo -->
                             <div class="col-md-6">

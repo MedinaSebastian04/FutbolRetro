@@ -27,11 +27,4 @@
             <p>VENTAS</p>
         </div>
     </a>
-
-    <a href="reportes.jsp">
-        <div class="menu-tarjetas">
-            <i class="fa-solid fa-file-lines"></i>
-            <p>REPORTES</p>
-        </div>
-    </a>
 </div>

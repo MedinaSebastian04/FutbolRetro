@@ -1,0 +1,28 @@
+.info{
+    background-color: #E5E8E8;
+    height: 600px; /* Altura*/
+    margin: 15px;
+    margin-top: 30px;
+    border: 1px solid;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Ajustar el tamaño de la fuente en el formulario */
+#formulario-venta label,
+#formulario-venta input {
+    font-size: 14px;
+}

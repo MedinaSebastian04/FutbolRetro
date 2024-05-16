@@ -1,0 +1,23 @@
+.info{
+    background-color: #E5E8E8;
+    height: 600px; /* Altura*/
+    margin: 15px;
+    margin-top: 30px;
+    border: 1px solid;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+.btn-group {
+    margin-top: 10px;
+}
+#formulario-buscar {
+    display: none;
+}
+/* Estilos para la tabla */
+table {
+    background-color: white;
+}
+
+

@@ -1,99 +1,3 @@
-*{
-    list-style: none;
-    text-decoration: none;
-    
-}
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-.container-fuera{
-    background-color: #fff;
-    margin: 0px 100px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.container-dentro{
-    background-color: #52BE80;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 1450px;
-    min-height: 700px;
-}
-
-.navegador{
-    display: flex;
-    justify-content: space-between;
-    margin: 15px;
-}
-
-.menu{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    padding: 5px;
-    background-color: #EAEDED;
-}
-
-.menu a{
-    color: #000000;
-}
-
-/*div de cada menu (caja, cliente, usuario, etc..)*/
-.menu-tarjetas{
-    background-color: #A9DFBF;
-    padding: 10px;
-    width: 110px; 
-    height: 80px;
-    text-align: center;
-    cursor: pointer;
-}
-
-
-/*Tamaño para los iconos del menu*/
-.menu-tarjetas i{
-    font-size: 45px;
-}
-
-/*div Salir*/
-.exit a{
-    background-color: #F1948A;
-    border: 1px solid #C0392B;
-    width: 150px;
-    height: 88px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 30px;
-    color: #C0392B;
-    cursor: pointer;
-}
-
-/*Tamaño del icono salir*/
-.exit i{
-    font-size: 40px;
-}
-
-.exit a:hover{
-    background-color: #EC7063;
-}
-
-/* Aca comienza el css para caja, cliente, usuarios, etc..*/
-/* Esto puedes borrarlo y crear una nueva class, y hacer el css de la ventana en un archivo nuevo*/
 .info{
     background-color: #E5E8E8;
     height: 600px; /* Altura*/
@@ -102,3 +6,23 @@ body{
     border: 1px solid;
 }
 
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container p{
+    text-align: start;
+}
+
+img{
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}

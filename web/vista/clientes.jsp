@@ -1,17 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String tipoCuenta = "admin";
+    // Obtener el valor del rol desde el alcance de sesión
+    String rol = (String) session.getAttribute("rol");
 
 %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="../css/indexCSS.css">
-        <link href="../css/Cliente.css" rel="stylesheet" type="text/css"/>
-        <title>Futbol Retro - Clientes</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="../css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/clienteCSS.css" rel="stylesheet" type="text/css"/>
+        <title>Futbol Retro - Clientes</title>
     </head>
     <body>
         <div class="container-fuera">
@@ -20,7 +21,7 @@
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
                     <% 
-                        if (tipoCuenta=="admin"){
+                        if (rol.equals("administrador")){
                     %>
                     <!-- Esto es el menu de administrador -->
                     <%@ include file="menuAdmin.jsp" %>
@@ -36,7 +37,7 @@
                     %>
                     
                     <div class="exit">
-                        <a href="login.jsp">
+                        <a href="../login.jsp">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
                             <p>SALIR</p>
                         </a>
@@ -65,7 +66,7 @@
                             background-color: white;
                         }
                     </style>
-
+                       
                     <div class="container">
                         <div class="row">
                             <!-- Lado izquierdo: Formulario de registro -->
