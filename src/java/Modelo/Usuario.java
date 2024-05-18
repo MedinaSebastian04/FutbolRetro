@@ -9,6 +9,20 @@ public class Usuario {
     private String clave;
     private String rol;
     
+    //constructor vacio
+    public Usuario(){}
+    
+    //contructor inicializado
+    public Usuario(int id, String nombre, String apellido, int dni, String usuario, String clave, String rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.usuario = usuario;
+        this.clave = clave;
+        this.rol = rol;
+    }
+    
     //getter y setter
 
     public int getId() {
@@ -66,5 +80,6 @@ public class Usuario {
     public void setRol(String rol) {
         this.rol = rol;
     }
+    
     
 }

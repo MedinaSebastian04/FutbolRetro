@@ -1,8 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Modelo.Usuario" %>
 <%
     // Obtener el valor del rol desde el alcance de sesión
-    String rol = (String) session.getAttribute("rol");
-
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    String rol = usuario.getRol();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,8 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="../css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/clienteCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="css/clienteCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Clientes</title>
     </head>
     <body>
@@ -24,20 +25,20 @@
                         if (rol.equals("administrador")){
                     %>
                     <!-- Esto es el menu de administrador -->
-                    <%@ include file="menuAdmin.jsp" %>
+                    <%@ include file="navegador/menuAdmin.jsp" %>
                     <!-- -->
                     <%
                         }else{
                     %>
                     <!-- Esto es el menu de empleado -->
-                    <%@ include file="menuEmpleado.jsp" %>
+                    <%@ include file="navegador/menuEmpleado.jsp" %>
                     <!-- -->
                     <%
                         }
                     %>
                     
                     <div class="exit">
-                        <a href="../login.jsp">
+                        <a href="login.jsp">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
                             <p>SALIR</p>
                         </a>

@@ -1,15 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Modelo.Usuario" %>
 <%
-    String tipoCuenta = "admin";
-
+    // Obtener el valor del rol desde el alcance de sesión
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    String rol = usuario.getRol();
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="../css/indexCSS.css">
-        <title>Futbol Retro - Reportes</title>
+        <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="css/ventasCSS.css" rel="stylesheet" type="text/css"/>
+        <title>Futbol Retro - Ventas</title>
     </head>
     <body>
         <div class="container-fuera">
@@ -18,16 +21,16 @@
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
                     <% 
-                        if (tipoCuenta=="admin"){
+                        if (rol.equals("administrador")){
                     %>
                     <!-- Esto es el menu de administrador -->
-                    <%@ include file="menuAdmin.jsp" %>
+                    <%@ include file="navegador/menuAdmin.jsp" %>
                     <!-- -->
                     <%
                         }else{
                     %>
                     <!-- Esto es el menu de empleado -->
-                    <%@ include file="menuEmpleado.jsp" %>
+                    <%@ include file="navegador/menuEmpleado.jsp" %>
                     <!-- -->
                     <%
                         }
@@ -44,9 +47,9 @@
                 
                 
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
-                <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana reportes -->
+                <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana ventas -->
                 <div class="info">
-                    PRUEBA REPORTES
+                    PRUEBA VENTAS
                 </div>
             </div>
         </div>

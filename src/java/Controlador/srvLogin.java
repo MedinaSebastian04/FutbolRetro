@@ -10,31 +10,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.*;
 import Modelo.Usuario;
-import javax.servlet.http.HttpSession;
-
+/**
+ *
+ * @author Juan
+ */
 @WebServlet(name = "srvLogin", urlPatterns = {"/srvLogin"})
 public class srvLogin extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         String accion = request.getParameter("accion");
-               
+        
         try {
             if(accion!=null){
                 switch (accion) {
-                    case "verificar": VerificarLogin(request,response); break;
-                    case "cerrar": CerrarSesion(request,response); break;
+                    case "INGRESAR": VerificarLogin(request,response); break;
                     default: response.sendRedirect("login.jsp");
                 }
             }else{
-                response.sendRedirect("login.jps"); //regresa al login
+                response.sendRedirect("login.jsp"); //regresa al login
             }
         } catch (Exception e) {
-            System.out.println("ERROR.. "+e.getMessage());
+            System.out.println("ERROR... "+e.getMessage());
         }
-    }//fin processRequest
+        
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -75,37 +86,24 @@ public class srvLogin extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    private void CerrarSesion(HttpServletRequest request, HttpServletResponse response){
-        try{
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("usuario",null);
-            sesion.invalidate();
-            response.sendRedirect("login.jsp");
-        }catch(Exception ex){
-            System.out.println("ERROR al cerrar sesion..."+ex.getMessage());
-       }
-    }//fin cerrar sesion
-    
     private void VerificarLogin(HttpServletRequest request, HttpServletResponse response){
         try {
-            HttpSession sesion;
-            UsuarioDAO dao;
-            Usuario user = new Usuario();
-            user.setUsuario(request.getParameter("txtusuario"));
-            user.setClave(request.getParameter("txtclave"));
-            dao = new UsuarioDAO();
-            Usuario usuario = dao.VerificarUsuario(user);
-            if(usuario!=null){
+            UsuarioDAO logindao;
+            Usuario userLogin = new Usuario();
+            userLogin.setUsuario(request.getParameter("txtusuario"));
+            userLogin.setClave(request.getParameter("txtclave"));
+            logindao = new UsuarioDAO();
+            Usuario usuarioLogin = logindao.ValidarUsuario(userLogin);
+            if(usuarioLogin!=null){
                 // Si el usuario es válido, redirigir a la página principal
-                request.getSession().setAttribute("rol", usuario.getRol());
-                response.sendRedirect("vista/index.jsp");
+                request.getSession().setAttribute("usuario", usuarioLogin);
+                response.sendRedirect("index.jsp");
             }else{
                 // Si el usuario no es válido, redirigir de vuelta a la página de inicio de sesión con un mensaje de error
                 request.setAttribute("mensaje","Credenciales incorrectas...");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            System.out.println("ERROR al verificar sesión..."+e.getMessage());
         }
     }
 }

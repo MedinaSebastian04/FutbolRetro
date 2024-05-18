@@ -1,16 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="Modelo.Usuario" %>
 <%
-    String tipoCuenta = "admin";
-
+    // Obtener el valor del rol desde el alcance de sesión
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    String rol = usuario.getRol();
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="../css/indexCSS.css">
-        <link href="../css/Cliente.css" rel="stylesheet" type="text/css"/>
-        <title>Futbol Retro - Clientes</title>
+        <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="css/reportesCSS.css" rel="stylesheet" type="text/css"/>
+        <title>Futbol Retro - Reportes</title>
     </head>
     <body>
         <div class="container-fuera">
@@ -19,16 +21,16 @@
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
                     <% 
-                        if (tipoCuenta=="admin"){
+                        if (rol.equals("administrador")){
                     %>
                     <!-- Esto es el menu de administrador -->
-                    <%@ include file="menuAdmin.jsp" %>
+                    <%@ include file="navegador/menuAdmin.jsp" %>
                     <!-- -->
                     <%
                         }else{
                     %>
                     <!-- Esto es el menu de empleado -->
-                    <%@ include file="menuEmpleado.jsp" %>
+                    <%@ include file="navegador/menuEmpleado.jsp" %>
                     <!-- -->
                     <%
                         }
@@ -45,26 +47,10 @@
                 
                 
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
-                <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana cliente -->
+                <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana reportes -->
                 <div class="info">
-                    <h1> Registro de Cliente </h1>
-
-                    <label for="dni">DNI:</label>
-                    <input type="text" id="dni" name="dni" required><br>
-
-                    <label for="nombre">Nombre:</label><input 
-                        type="text" id="nombre" name="nombre" required><br>
-
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required><br>
-
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono" required><br>
-
-                    <label for="direccion">Dirección</label>
-                    <input type="text" id="direccion" name="direccion " required><br>
-
-                    <button type="submit">Agregar</button>
+                    PRUEBA REPORTES
+                    
                 </div>
             </div>
         </div>

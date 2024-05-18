@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,10 @@
                 </div>
                 <form action="srvLogin" method="post">
                     <h3>User</h3>
-                    <input class="controls" type="text" name="txtusuario" id="usuario" placeholder="Usuario" required>
+                    <input class="controls" type="text" name="txtusuario" placeholder="Usuario" required>
                     <h3>Password</h3>
-                    <input class="controls" type="password" name="txtclave" id="contrasena" placeholder="Contraseña" required>
-                    <input class="buttons" type="submit" name="accion" value="verificar">
+                    <input class="controls" type="password" name="txtclave" placeholder="Contraseña" required>
+                    <input class="buttons" type="submit" name="accion" value="INGRESAR">
                     <br>
                     <%
                         String mensaje = (String) request.getAttribute("mensaje");

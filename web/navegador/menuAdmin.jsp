@@ -14,6 +14,13 @@
         </div>
     </a>
 
+    <a href="srvUsuario?accion=Listar">
+        <div class="menu-tarjetas">
+            <i class="fa-solid fa-user"></i>
+            <p>USUARIOS</p>
+        </div>
+    </a>
+
     <a href="productos.jsp">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-shop"></i>
