@@ -6,7 +6,20 @@ public class Cliente {
     private String apellido;
     private int telefono;
     private String correo;
+    
+    // Constructor vacío
+    public Cliente() {}
 
+    // Constructor inicializado
+    public Cliente(int id, String nombre, String apellido, int telefono, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+    
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -47,4 +60,5 @@ public class Cliente {
         this.correo = correo;
     }
 }
+
 
