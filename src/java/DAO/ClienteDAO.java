@@ -1,12 +1,23 @@
 package DAO;
 
 import Modelo.Cliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO extends Conexion {
-    public ClienteDAO() {}
-    public void agregarCliente(Cliente cliente) throws Exception {
+    private Connection con;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
+    public ClienteDAO() {
+        this.con = this.getConnection(); 
+    }
+
+    // Método para agregar cliente
+    public void agregarCliente(Cliente cliente) {
         String SQL = "INSERT INTO clientes (nombre, apellido, telefono, correo) VALUES (?, ?, ?, ?)";
         try {
             ps = con.prepareStatement(SQL);
@@ -16,11 +27,14 @@ public class ClienteDAO extends Conexion {
             ps.setString(4, cliente.getCorreo());
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al agregar cliente: " + e);
+            System.out.println("ERROR al agregar cliente: " + e.getMessage());
+        } finally {
+            closeResources();
         }
     }
 
-    public void actualizarCliente(Cliente cliente) throws Exception {
+    // Método para actualizar cliente
+    public void actualizarCliente(Cliente cliente) {
         String SQL = "UPDATE clientes SET nombre = ?, apellido = ?, telefono = ?, correo = ? WHERE id = ?";
         try {
             ps = con.prepareStatement(SQL);
@@ -31,22 +45,28 @@ public class ClienteDAO extends Conexion {
             ps.setInt(5, cliente.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al actualizar cliente: " + e);
+            System.out.println("ERROR al actualizar cliente: " + e.getMessage());
+        } finally {
+            closeResources();
         }
     }
 
-    public void eliminarCliente(int id) throws Exception {
+    // Método para eliminar cliente
+    public void eliminarCliente(int id) {
         String SQL = "DELETE FROM clientes WHERE id = ?";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Error al eliminar cliente: " + e);
+            System.out.println("ERROR al eliminar cliente: " + e.getMessage());
+        } finally {
+            closeResources();
         }
     }
 
-    public Cliente obtenerCliente(int id) throws Exception {
+    // Método para obtener un cliente por ID
+    public Cliente obtenerCliente(int id) {
         Cliente cliente = null;
         String SQL = "SELECT * FROM clientes WHERE id = ?";
         try {
@@ -62,12 +82,15 @@ public class ClienteDAO extends Conexion {
                 cliente.setCorreo(rs.getString("correo"));
             }
         } catch (Exception e) {
-            System.out.println("Error al obtener cliente: " + e);
+            System.out.println("ERROR al obtener cliente: " + e.getMessage());
+        } finally {
+            closeResources();
         }
         return cliente;
     }
 
-    public List<Cliente> obtenerTodosLosClientes() throws Exception {
+    // Método para obtener todos los clientes
+    public List<Cliente> obtenerTodosLosClientes() {
         List<Cliente> clientes = new ArrayList<>();
         String SQL = "SELECT * FROM clientes";
         try {
@@ -83,9 +106,25 @@ public class ClienteDAO extends Conexion {
                 clientes.add(cliente);
             }
         } catch (Exception e) {
-            System.out.println("Error al obtener todos los clientes: " + e);
+            System.out.println("ERROR al obtener todos los clientes: " + e.getMessage());
+        } finally {
+            closeResources();
         }
         return clientes;
     }
-}
 
+    // Método para cerrar recursos
+    private void closeResources() {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (Exception e) {
+            System.out.println("ERROR al cerrar recursos: " + e.getMessage());
+        }
+    }
+
+    private Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}
