@@ -1,7 +1,6 @@
 package DAO;
 
 import Modelo.Cliente;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,96 +17,83 @@ public class ClienteDAO extends Conexion {
             ps.setInt(3, cliente.getTelefono());
             ps.setString(4, cliente.getCorreo());
             ps.executeUpdate();
-        } catch (SQLException e) {
+            ps.close();
+            con.close();
+        } catch (Exception e) {
             System.out.println("ERROR al agregar cliente: " + e);
-        } finally {
-            closeResources(); // Cerrar recursos aquí
         }
     }
 
     // Método para actualizar cliente
-    public void actualizarCliente(Cliente cliente) {
-        String SQL = "UPDATE clientes SET nombre = ?, apellido = ?, telefono = ?, correo = ? WHERE id = ?";
+    public void actualizarCliente(Cliente client) {
+        String SQL = "UPDATE clientes SET nombre = ?, apellido = ?, telefono = ?, correo = ? WHERE idClientes = ?";
         try {
             ps = con.prepareStatement(SQL);
-            ps.setString(1, cliente.getNombre());
-            ps.setString(2, cliente.getApellido());
-            ps.setInt(3, cliente.getTelefono());
-            ps.setString(4, cliente.getCorreo());
-            ps.setInt(5, cliente.getId());
+            ps.setString(1, client.getNombre());
+            ps.setString(2, client.getApellido());
+            ps.setInt(3, client.getTelefono());
+            ps.setString(4, client.getCorreo());
+            ps.setInt(5, client.getId());
             ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR al actualizar cliente: " + e);
-        } finally {
-            closeResources(); // Cerrar recursos aquí
         }
     }
 
     // Método para eliminar cliente
     public void eliminarCliente(int id) {
-        String SQL = "DELETE FROM clientes WHERE id = ?";
+        String SQL = "DELETE FROM clientes WHERE idClientes = ?";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR al eliminar cliente: " + e);
-        } finally {
-            closeResources(); // Cerrar recursos aquí
         }
     }
 
     // Método para obtener un cliente por ID
     public Cliente obtenerCliente(int id) {
-        Cliente cliente = null;
-        String SQL = "SELECT * FROM clientes WHERE id = ?";
+        Cliente cliente = new Cliente();
+        String SQL = "SELECT * FROM clientes WHERE idClientes = ?";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                cliente = new Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setApellido(rs.getString("apellido"));
-                cliente.setTelefono(rs.getInt("telefono"));
-                cliente.setCorreo(rs.getString("correo"));
+                cliente.setNombre(rs.getString(2));
+                cliente.setApellido(rs.getString(3));
+                cliente.setTelefono(rs.getInt(4));
+                cliente.setCorreo(rs.getString(5));
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR al obtener cliente: " + e);
-        } finally {
-            closeResources(); // Cerrar recursos aquí
         }
         return cliente;
     }
 
     // Método para obtener todos los clientes
     public List obtenerTodosLosClientes() {
-        List clientes = new ArrayList<>();
-        String SQL = "SELECT * FROM clientes";
+        String SQL = "SELECT idClientes, nombre, apellido, telefono, correo FROM clientes";
+        List<Cliente> lista = new ArrayList();
         try {
             ps = con.prepareStatement(SQL);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setApellido(rs.getString("apellido"));
-                cliente.setTelefono(rs.getInt("telefono"));
-                cliente.setCorreo(rs.getString("correo"));
-                clientes.add(cliente);
+                cliente.setId(rs.getInt(1));
+                cliente.setNombre(rs.getString(2));
+                cliente.setApellido(rs.getString(3));
+                cliente.setTelefono(rs.getInt(4));
+                cliente.setCorreo(rs.getString(5));
+                lista.add(cliente);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR al obtener todos los clientes: " + e);
-        } finally {
-            closeResources(); // Cerrar recursos aquí
         }
-        return clientes;
+        return lista;
     }
 
-    private void closeResources() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
 
 

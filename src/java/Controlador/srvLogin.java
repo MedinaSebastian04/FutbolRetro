@@ -89,7 +89,8 @@ public class srvLogin extends HttpServlet {
     private void VerificarLogin(HttpServletRequest request, HttpServletResponse response){
         try {
             UsuarioDAO logindao;
-            Usuario userLogin = new Usuario();
+            Usuario userLogin = null;
+            userLogin = new Usuario();
             userLogin.setUsuario(request.getParameter("txtusuario"));
             userLogin.setClave(request.getParameter("txtclave"));
             logindao = new UsuarioDAO();

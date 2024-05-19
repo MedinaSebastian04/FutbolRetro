@@ -1,15 +1,16 @@
 package Controlador;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ClienteDAO;
+import DAO.*;
 import Modelo.Cliente;
+import java.util.List;
 
 @WebServlet(name = "srvCliente", urlPatterns = {"/srvCliente"})
 public class srvCliente extends HttpServlet {
@@ -29,7 +30,7 @@ public class srvCliente extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "Listar":
-                    List lista = clienteDAO.obtenerTodosLosClientes();
+                    List lista = clientedao.obtenerTodosLosClientes();
                     request.setAttribute("listaClientes", lista);
                     request.getRequestDispatcher("clientes.jsp").forward(request, response);
                     break;
@@ -51,7 +52,7 @@ public class srvCliente extends HttpServlet {
                     idCliente = Integer.parseInt(request.getParameter("id"));
                     Cliente clienteid = clienteDAO.obtenerCliente(idCliente);
                     request.setAttribute("clienteSeleccionado", clienteid);
-                    request.getRequestDispatcher("editarCliente.jsp").forward(request, response);
+                    request.getRequestDispatcher("srvCliente?accion=Listar").forward(request, response);
                     break;
                 
                 case "actualizar":

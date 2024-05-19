@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Modelo.Usuario"%>
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Cliente"%>
 <%@page import="DAO.*" %>
 <%@page import="java.util.*" %>
@@ -9,7 +9,7 @@
     String rol = usuario.getRol();
 
     // Obtener la lista de los usuarios
-    List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("listaclientes");
+    List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("listaClientes");
 
     // Obtener el usuario selecionado para editar
     Cliente clienteSeleccionado = (Cliente) request.getAttribute("clienteSeleccionado");
@@ -28,17 +28,16 @@
     <body>
         <div class="container-fuera">
             <div class="container-dentro">
-                
+
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
-                    <% 
-                        if (rol.equals("administrador")){
+                    <%                        if (rol.equals("administrador")) {
                     %>
                     <!-- Esto es el menu de administrador -->
                     <%@ include file="navegador/menuAdmin.jsp" %>
                     <!-- -->
                     <%
-                        }else{
+                    } else {
                     %>
                     <!-- Esto es el menu de empleado -->
                     <%@ include file="navegador/menuEmpleado.jsp" %>
@@ -46,7 +45,7 @@
                     <%
                         }
                     %>
-                    
+
                     <div class="exit">
                         <a href="login.jsp">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
@@ -55,39 +54,18 @@
                     </div>
                 </div>
                 <!-- -->
-                
-                
+
+
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana cliente -->
                 <div class="info">
-                    <!--PRUEBAS AVISANNNNN-->
-                    
-                    <style>
-                        .form-group {
-                            margin-bottom: 10px;
-                        }
-                        .btn-group {
-                            margin-top: 10px;
-                        }
-                        #formulario-buscar {
-                            display: none;
-                        }
-                        /* Estilos para la tabla */
-                        table {
-                            background-color: white;
-                        }
-                    </style>
-                       
-                    <div class="container">
-                        <div class="row">
+
+                    <div class="container-cliente">
+                        <div class="ventana-cliente">
                             <!-- Lado izquierdo: Formulario de registro -->
-                            <div class="col-md-6">
-                     <br>
-                                <form id="formulario-cliente">
-                                    <div class="form-group">
-                                        <label for="codCliente">COD CLIENTE:</label>
-                                        <input type="text" class="form-control" id="codCliente" name="codCliente" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getId() : "")%>" required>
-                                    </div>
+                            <div class="izquierda">
+                                <h3 class="text-center">Registro de Clientes</h3>
+                                <form id="formulario-cliente" action="srvCliente" method="post">
                                     <div class="form-group">
                                         <label for="nombre">NOMBRE:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getNombre() : "")%>" required>
@@ -105,48 +83,53 @@
                                         <input type="email" class="form-control" id="correo" name="correo" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getCorreo() : "")%>" required>
                                     </div>
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-primary">Agregar</button>
-                                        <button type="button" class="btn btn-danger" id="eliminar">Eliminar</button>
+                                        <button type="submit" class="btn btn-primary" name="accion" value="agregar" id="agregar">Agregar</button>
+                                        <button type="submit" class="btn btn-danger" name="accion" value="actualizar" id="actualizar">Actualizar</button>
                                     </div>
                                 </form>
                             </div>
                             <!-- Lado derecho: Tabla de clientes -->
-                            <div class="col-md-6">
-                <br>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>COD CLIENTE</th>
-                                            <th>NOMBRE</th>
-                                            <th>APELLIDO</th>
-                                            <th>TELÉFONO</th>
-                                            <th>CORREO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tabla-clientes">
-                                        <%
-                                            if (listaClientes != null) {
-                                                for (Cliente clientes : listaClientes) {%>
-                                        <tr>
-                                            <td><%= clientes.getId()%></td>
-                                            <td><%= clientes.getNombre()%></td>
-                                            <td><%= clientes.getApellido()%></td>
-                                            <td><%= clientes.getTelefono()%></td>
-                                            <td><%= clientes.getCorreo()%></td>
-                                            <td class="btn-group">
-                                                <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
-                                                <a class="btn btn-primary" href="srvUsuario?accion=editar&id=<%= clientes.getId()%>">Editar</a>
-                                                <a class="btn btn-danger" href="srvUsuario?accion=eliminar&id=<%= clientes.getId()%>">Eliminar</a>
-                                            </td>
-                                        </tr>
-                                        <% }
+                            <div class="derecha">
+                                <h3 class="text-center" id="titulotabla">Lista de Productos</h3>
+                                <div class="scroll">
+                                    <table class="table">
+                                        <thead class="cabecera">
+                                            <tr>
+                                                <th>COD CLIENTE</th>
+                                                <th>NOMBRE</th>
+                                                <th>APELLIDO</th>
+                                                <th>TELÉFONO</th>
+                                                <th>CORREO</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contenido">
+
+                                            <%
+                                                if (listaClientes != null) {
+                                                    for (Cliente clientes : listaClientes) {%>
+                                            <tr>
+                                                <td><%= clientes.getId()%></td>
+                                                <td><%= clientes.getNombre()%></td>
+                                                <td><%= clientes.getApellido()%></td>
+                                                <td><%= clientes.getTelefono()%></td>
+                                                <td><%= clientes.getCorreo()%></td>
+                                                <td class="btn-group">
+                                                    <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
+                                                    <a class="btn btn-primary" href="srvCliente?accion=editar&id=<%= clientes.getId()%>">Editar</a>
+                                                    <a class="btn btn-danger" href="srvCliente?accion=eliminar&id=<%= clientes.getId()%>">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <% }
                                         } else { %>
-                                        <tr>
-                                            <td colspan="6">No hay clientes disponibles</td>
-                                        </tr>
-                                        <% }%>
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td colspan="6">No hay clientes disponibles</td>
+
+                                            </tr>
+                                            <% }%>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

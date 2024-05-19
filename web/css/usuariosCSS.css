@@ -1,9 +1,9 @@
 .info{
     background-color: #E5E8E8;
+    height: 640px; /* Altura*/
     margin: 15px;
     margin-top: 30px;
     border: 1px solid;
-    
 }
 
 .container-usuarios{
@@ -35,7 +35,15 @@
 
 .derecha{
     width: 900px;
-    height: 600px; /* Altura fija para el div */
+}
+
+#titulotabla{
+    margin: 0;
+    height: 34px;
+}
+
+.scroll{
+    height: 566px; /* Altura fija para el div */
     overflow-y: auto; /* Agregar scroll vertical si el contenido excede la altura */
     overflow-x: hidden; /* Evitar el scroll horizontal */
     padding-right: 15px; /* Añadir espacio para evitar el solapamiento del scroll */
@@ -45,7 +53,6 @@
 /* Estilos para la tabla */
 .table{
     width: 100%;
-    height: 100%;
     background-color: white;
     
 }

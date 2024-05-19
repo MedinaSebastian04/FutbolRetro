@@ -7,7 +7,7 @@
         </div>
     </a>
 
-    <a href="clientes.jsp">
+    <a href="srvCliente?accion=Listar">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-address-book"></i>
             <p>CLIENTES</p>

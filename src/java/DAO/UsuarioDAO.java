@@ -10,7 +10,7 @@ public class UsuarioDAO extends Conexion {
     //metodo para verificar si existe el usuario
     public Usuario ValidarUsuario(Usuario user){
         Usuario usuarioActivo = null;
-        String SQL = "select * from usuario where usuario=? and clave=?;";
+        String SQL = "select*from usuario where usuario=? and clave=?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setString(1, user.getUsuario());

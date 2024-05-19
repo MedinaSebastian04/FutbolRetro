@@ -33,8 +33,7 @@
 
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
-                    <%                        
-                       if (rol.equals("administrador")) {
+                    <%                        if (rol.equals("administrador")) {
                     %>
                     <!-- Esto es el menu de administrador -->
                     <%@ include file="navegador/menuAdmin.jsp" %>
@@ -67,7 +66,7 @@
                         <div class="ventana-productos">
                             <!-- Lado izquierdo: Formulario de registro de productos -->
                             <div class="izquierda">
-                                <h2 class="text-center">Registro de Productos</h2>
+                                <h3 class="text-center">Registro de Productos</h3>
                                 <form id="formulario-producto" action="srvProductos" method="post">
                                     <div class="form-group">
                                         <label for="descripcion">Descripción:</label>
@@ -98,43 +97,44 @@
                             </div>
                             <!-- Lado derecho: Tabla de productos -->
                             <div class="derecha">
-                                <h2 class="text-center">Lista de Productos</h2>
-                                
-                                <table class="table"> 
-                                    <thead class="cabecera">
-                                        <tr>
-                                            <th>CODIGO PRODUCTO</th>
-                                            <th>DESCRIPCION</th>
-                                            <th>PRECIO</th>
-                                            <th>STOCK</th>
-                                            <th>CATEGORIA</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="contenido">
-                                        <%
-                                            if (listaProductos != null) {
-                                                for (Producto productos : listaProductos) {%>
-                                        <tr>
-                                            <td><%= productos.getIdProd()%></td>
-                                            <td><%= productos.getDescripcion()%></td>
-                                            <td><%= productos.getPrecio()%></td>
-                                            <td><%= productos.getStock()%></td>
-                                            <td><%= productos.getCategoria()%></td>                                           
-                                            <td class="btn-group">
-                                                <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
-                                                <a class="btn btn-primary" href="srvProductos?accion=editar&id=<%= productos.getIdProd()%>">Editar</a>
-                                                <a class="btn btn-danger" href="srvProductos?accion=eliminar&id=<%= productos.getIdProd()%>">Eliminar</a>
-                                            </td>
-                                        </tr>
-                                        <% }
+                                <h3 class="text-center" id="titulotabla">Lista de Productos</h3>
+                                <div class="scroll">
+                                    <table class="table"> 
+                                        <thead class="cabecera">
+                                            <tr>
+                                                <th>CODIGO PRODUCTO</th>
+                                                <th>DESCRIPCION</th>
+                                                <th>PRECIO</th>
+                                                <th>STOCK</th>
+                                                <th>CATEGORIA</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="contenido">
+                                            <%
+                                                if (listaProductos != null) {
+                                                    for (Producto productos : listaProductos) {%>
+                                            <tr>
+                                                <td><%= productos.getIdProd()%></td>
+                                                <td><%= productos.getDescripcion()%></td>
+                                                <td><%= productos.getPrecio()%></td>
+                                                <td><%= productos.getStock()%></td>
+                                                <td><%= productos.getCategoria()%></td>                                           
+                                                <td class="btn-group">
+                                                    <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
+                                                    <a class="btn btn-primary" href="srvProductos?accion=editar&id=<%= productos.getIdProd()%>">Editar</a>
+                                                    <a class="btn btn-danger" href="srvProductos?accion=eliminar&id=<%= productos.getIdProd()%>">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <% }
                                         } else { %>
-                                        <tr>
-                                            <td colspan="6">No hay usuarios disponibles</td>
-                                        </tr>
-                                        <% }%>
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td colspan="6">No hay usuarios disponibles</td>
+                                            </tr>
+                                            <% }%>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

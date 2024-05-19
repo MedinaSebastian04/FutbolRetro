@@ -64,7 +64,7 @@
                         <div class="ventana-usuarios">
                             <!-- Lado izquierdo: Formulario de registro de usuarios -->
                             <div class="izquierda">
-                                <h2 class="text-center">Registro de Usuarios</h2>
+                                <h3 class="text-center">Registro de Usuarios</h3>
                                 <form id="formulario-usuario" action="srvUsuario" method="post">
                                     <div class="form-group">
                                         <label for="nombre">NOMBRE:</label>
@@ -101,46 +101,48 @@
                             </div>
                             <!-- Lado derecho: Tabla de usuarios -->
                             <div class="derecha">
-                                <h2 class="text-center">Lista de Usuarios</h2>
-                                <table class="table">
-                                    <thead class="cabecera">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NOMBRE</th>
-                                            <th>APELLIDO</th>
-                                            <th>DNI</th>
-                                            <th>USUARIO</th>
-                                            <th>CLAVE</th>
-                                            <th>ROL</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="contenido">
-                                        <%
-                                            if (listaUsuarios != null) {
-                                                for (Usuario usuarios : listaUsuarios) {%>
-                                        <tr>
-                                            <td><%= usuarios.getId()%></td>
-                                            <td><%= usuarios.getNombre()%></td>
-                                            <td><%= usuarios.getApellido()%></td>
-                                            <td><%= usuarios.getDni()%></td>
-                                            <td><%= usuarios.getUsuario()%></td>
-                                            <td><%= usuarios.getClave()%></td>
-                                            <td><%= usuarios.getRol()%></td>
-                                            <td class="btn-group">
-                                                <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
-                                                <a class="btn btn-primary" href="srvUsuario?accion=editar&id=<%= usuarios.getId()%>">Editar</a>
-                                                <a class="btn btn-danger" href="srvUsuario?accion=eliminar&id=<%= usuarios.getId()%>">Eliminar</a>
-                                            </td>
-                                        </tr>
-                                        <% }
+                                <h3 class="text-center" id="titulotabla">Lista de Usuarios</h3>
+                                <div class="scroll">
+                                    <table class="table">
+                                        <thead class="cabecera">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>NOMBRE</th>
+                                                <th>APELLIDO</th>
+                                                <th>DNI</th>
+                                                <th>USUARIO</th>
+                                                <th>CLAVE</th>
+                                                <th>ROL</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="contenido">
+                                            <%
+                                                if (listaUsuarios != null) {
+                                                    for (Usuario usuarios : listaUsuarios) {%>
+                                            <tr>
+                                                <td><%= usuarios.getId()%></td>
+                                                <td><%= usuarios.getNombre()%></td>
+                                                <td><%= usuarios.getApellido()%></td>
+                                                <td><%= usuarios.getDni()%></td>
+                                                <td><%= usuarios.getUsuario()%></td>
+                                                <td><%= usuarios.getClave()%></td>
+                                                <td><%= usuarios.getRol()%></td>
+                                                <td class="btn-group">
+                                                    <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
+                                                    <a class="btn btn-primary" href="srvUsuario?accion=editar&id=<%= usuarios.getId()%>">Editar</a>
+                                                    <a class="btn btn-danger" href="srvUsuario?accion=eliminar&id=<%= usuarios.getId()%>">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <% }
                                         } else { %>
-                                        <tr>
-                                            <td colspan="6">No hay usuarios disponibles</td>
-                                        </tr>
-                                        <% }%>
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td colspan="6">No hay usuarios disponibles</td>
+                                            </tr>
+                                            <% }%>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
