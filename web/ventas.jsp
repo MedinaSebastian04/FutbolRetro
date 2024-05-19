@@ -49,7 +49,21 @@
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana ventas -->
                 <div class="info">
-                    PRUEBA VENTAS
+                        <h1>Reporte de Ventas de Polos</h1>
+                        <table border="1">
+                            <tr>
+                                <th>ID Venta</th>
+                                <th>Fecha</th>
+                                <th>Nombre del Cliente</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                            </tr>
+                    
+                    
+                    
+                    
+                    
+                   
                 </div>
             </div>
         </div>
