@@ -82,8 +82,8 @@ public class ClienteDAO extends Conexion {
     }
 
     // Método para obtener todos los clientes
-    public List<Cliente> obtenerTodosLosClientes() {
-        List<Cliente> clientes = new ArrayList<>();
+    public List obtenerTodosLosClientes() {
+        List clientes = new ArrayList<>();
         String SQL = "SELECT * FROM clientes";
         try {
             ps = con.prepareStatement(SQL);

@@ -29,7 +29,7 @@ public class srvCliente extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "Listar":
-                    List<Cliente> lista = clienteDAO.obtenerTodosLosClientes();
+                    List lista = clienteDAO.obtenerTodosLosClientes();
                     request.setAttribute("listaClientes", lista);
                     request.getRequestDispatcher("clientes.jsp").forward(request, response);
                     break;

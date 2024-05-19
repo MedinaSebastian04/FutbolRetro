@@ -1,9 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Modelo.Usuario" %>
+<%@ page import="Modelo.Usuario"%>
+<%@page import="Modelo.Cliente"%>
+<%@page import="DAO.*" %>
+<%@page import="java.util.*" %>
 <%
     // Obtener el valor del rol desde el alcance de sesión
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String rol = usuario.getRol();
+
+    // Obtener la lista de los usuarios
+    List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("listaclientes");
+
+    // Obtener el usuario selecionado para editar
+    Cliente clienteSeleccionado = (Cliente) request.getAttribute("clienteSeleccionado");
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -76,23 +86,23 @@
                                 <form id="formulario-cliente">
                                     <div class="form-group">
                                         <label for="codCliente">COD CLIENTE:</label>
-                                        <input type="text" class="form-control" id="codCliente" name="codCliente" required>
+                                        <input type="text" class="form-control" id="codCliente" name="codCliente" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getId() : "")%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombre">NOMBRE:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getNombre() : "")%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="apellido">APELLIDO:</label>
-                                        <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                        <input type="text" class="form-control" id="apellido" name="apellido" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getApellido() : "")%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="telefono">TELÉFONO:</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono" required>
+                                        <input type="tel" class="form-control" id="telefono" name="telefono" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getTelefono() : "")%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="correo">CORREO:</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" required>
+                                        <input type="email" class="form-control" id="correo" name="correo" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getCorreo() : "")%>" required>
                                     </div>
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -114,50 +124,32 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tabla-clientes">
-                                        <!-- Aquí se insertarán las filas de la tabla dinámicamente -->
+                                        <%
+                                            if (listaClientes != null) {
+                                                for (Cliente clientes : listaClientes) {%>
+                                        <tr>
+                                            <td><%= clientes.getId()%></td>
+                                            <td><%= clientes.getNombre()%></td>
+                                            <td><%= clientes.getApellido()%></td>
+                                            <td><%= clientes.getTelefono()%></td>
+                                            <td><%= clientes.getCorreo()%></td>
+                                            <td class="btn-group">
+                                                <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
+                                                <a class="btn btn-primary" href="srvUsuario?accion=editar&id=<%= clientes.getId()%>">Editar</a>
+                                                <a class="btn btn-danger" href="srvUsuario?accion=eliminar&id=<%= clientes.getId()%>">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                        <% }
+                                        } else { %>
+                                        <tr>
+                                            <td colspan="6">No hay clientes disponibles</td>
+                                        </tr>
+                                        <% }%>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
-                    <script>
-                        // Capturar el formulario de registro
-                        const formCliente = document.getElementById('formulario-cliente');
-                        // Agregar evento de envío para el formulario de registro
-                        formCliente.addEventListener('submit', function(event) {
-                            event.preventDefault();
-                            // Obtener los datos del formulario de registro
-                            const formData = new FormData(formCliente);
-                            const rowData = [];
-                            formData.forEach(value => {
-                                rowData.push(value);
-                            });
-                            // Crear una nueva fila para la tabla de clientes
-                            const newRow = document.createElement('tr');
-                            rowData.forEach(value => {
-                                const cell = document.createElement('td');
-                                cell.textContent = value;
-                                newRow.appendChild(cell);
-                            });
-                            // Agregar la nueva fila a la tabla de clientes
-                            const tableBody = document.getElementById('tabla-clientes');
-                            tableBody.appendChild(newRow);
-                            // Limpiar el formulario de registro después de enviar
-                            formCliente.reset();
-                        });
-                        // Evento para eliminar fila
-                        const btnEliminar = document.getElementById('eliminar');
-                        btnEliminar.addEventListener('click', function() {
-                            const table = document.getElementById('tabla-clientes');
-                            const rowCount = table.rows.length;
-                            if (rowCount > 0) {
-                                table.deleteRow(rowCount - 1);
-                            }
-                        });
-                    </script>
-                    
-                    <!--PRUEBAS AVISANNNNN-->
                 </div>
             </div>
         </div>
