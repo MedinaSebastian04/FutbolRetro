@@ -9,33 +9,33 @@ public class UsuarioDAO extends Conexion {
 
     //metodo para verificar si existe el usuario
     public Usuario ValidarUsuario(Usuario user){
-        Usuario usuario = null;
-        String SQL = "select * from usuario where usuario=? and clave=?";
+        Usuario usuarioActivo = null;
+        String SQL = "select * from usuario where usuario=? and clave=?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setString(1, user.getUsuario());
             ps.setString(2, user.getClave());
             rs = ps.executeQuery();
             if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setId(rs.getInt(1));
-                usuario.setNombre(rs.getString(2));
-                usuario.setApellido(rs.getString(3));
-                usuario.setDni(rs.getInt(4));
-                usuario.setUsuario(rs.getString(5));
-                usuario.setClave(rs.getString(6));
-                usuario.setRol(rs.getString(7));
+                usuarioActivo = new Usuario();
+                usuarioActivo.setId(rs.getInt(1));
+                usuarioActivo.setNombre(rs.getString(2));
+                usuarioActivo.setApellido(rs.getString(3));
+                usuarioActivo.setDni(rs.getInt(4));
+                usuarioActivo.setUsuario(rs.getString(5));
+                usuarioActivo.setClave(rs.getString(6));
+                usuarioActivo.setRol(rs.getString(7));
             }
         } catch (Exception ex) {
             System.out.println("ERROR al recuperar usuario: " + ex);
         }
 
-        return usuario;
+        return usuarioActivo;
     }
 
     //método que recupera en una coleccion todo los registro de una tabla
     public List RecuperarRegistrosUsuario() {
-        String SQL = "select id, nombre, apellido, dni, usuario, clave, rol from usuario;";
+        String SQL = "select idUsuario, nombre, apellido, dni, usuario, clave, rol from usuario;";
         List<Usuario> lista = new ArrayList();
         try {
             ps = con.prepareStatement(SQL);
@@ -76,9 +76,9 @@ public class UsuarioDAO extends Conexion {
         }
     }
 
-    //metodo para eliminar 
+    //metodo para eliminar usuario
     public void EliminarRegistroUsuario(int idUsuario){
-        String SQL = "DELETE FROM usuario WHERE id = ?;";
+        String SQL = "DELETE FROM usuario WHERE idUsuario = ?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, idUsuario);
@@ -92,7 +92,7 @@ public class UsuarioDAO extends Conexion {
     //metodo para listar el usuario a editar por id
     public Usuario MostrarUsuarioEditar(int idUsuario){
         Usuario usuario = new Usuario();
-        String SQL = "SELECT * FROM usuario WHERE id = ?;";
+        String SQL = "SELECT * FROM usuario WHERE idUsuario = ?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, idUsuario);
@@ -113,7 +113,7 @@ public class UsuarioDAO extends Conexion {
 
     //metodo para actualizar usuario
     public void ActualizarUsuario(Usuario user){
-        String SQL = "UPDATE usuario SET nombre = ?, apellido = ?, dni = ?, usuario = ?, clave = ?, rol = ? WHERE id = ?;";
+        String SQL = "UPDATE usuario SET nombre = ?, apellido = ?, dni = ?, usuario = ?, clave = ?, rol = ? WHERE idUsuario = ?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setString(1, user.getNombre());

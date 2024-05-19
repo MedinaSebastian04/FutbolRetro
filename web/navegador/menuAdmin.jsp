@@ -21,7 +21,7 @@
         </div>
     </a>
 
-    <a href="productos.jsp">
+    <a href="srvProductos?accion=Listar">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-shop"></i>
             <p>PRODUCTOS</p>

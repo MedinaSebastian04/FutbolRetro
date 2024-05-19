@@ -64,8 +64,8 @@
                         <div class="ventana-usuarios">
                             <!-- Lado izquierdo: Formulario de registro de usuarios -->
                             <div class="izquierda">
-                                <BR>
-                                <form id="formulario-usuario"action="srvUsuario" method="post">
+                                <h2 class="text-center">Registro de Usuarios</h2>
+                                <form id="formulario-usuario" action="srvUsuario" method="post">
                                     <div class="form-group">
                                         <label for="nombre">NOMBRE:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getNombre() : "")%>"required>
@@ -101,7 +101,7 @@
                             </div>
                             <!-- Lado derecho: Tabla de usuarios -->
                             <div class="derecha">
-                                
+                                <h2 class="text-center">Lista de Usuarios</h2>
                                 <table class="table">
                                     <thead class="cabecera">
                                         <tr>

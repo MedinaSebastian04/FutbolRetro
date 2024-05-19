@@ -1,14 +1,15 @@
-
 package DAO;
 
 import Modelo.Producto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductosDAO extends Conexion{
+public class ProductosDAO extends Conexion {
+
     public ProductosDAO(){}
     
-     public List RecuperarProducto() {
+    //método que recupera en una coleccion todo los productos de una tabla
+    public List RecuperarRegistrosProducto() {
         String SQL = "select idProd, descripcion, precio, stock, categoria from productos;";
         List<Producto> lista = new ArrayList();
         try {
@@ -18,7 +19,7 @@ public class ProductosDAO extends Conexion{
                 Producto prod = new Producto();//creamos el objeto
                 prod.setIdProd(rs.getInt(1));
                 prod.setDescripcion(rs.getString(2));
-                prod.setPrecio(rs.getInt(3));
+                prod.setPrecio(rs.getDouble(3));
                 prod.setStock(rs.getInt(4));
                 prod.setCategoria(rs.getString(5));
                 lista.add(prod); //agregamos el objeto a la lista
@@ -29,22 +30,26 @@ public class ProductosDAO extends Conexion{
         return lista; // retornamos la lista con todos los registros
     }
     
-     public void InsertarProducto (Producto prod){
-        String SQL = "insert into productos( descripcion, precio, stock, categoria) values (?, ?, ?, ?, ?, ?);";
+    //metodo para agregar producto
+    public void InsertarProducto(Producto prod) {
+        String SQL = "insert into productos(descripcion, precio, stock, categoria) values (?, ?, ?, ?);";
         try {
             ps = con.prepareStatement(SQL);
             ps.setString(1, prod.getDescripcion());
-            ps.setInt(2, prod.getPrecio());
+            ps.setDouble(2, prod.getPrecio());
             ps.setInt(3, prod.getStock());
             ps.setString(4, prod.getCategoria());
+            ps.executeUpdate();
             ps.close();
             con.close();
         } catch (Exception ex) {
             System.out.println("ERROR al insertar productos. " + ex);
         }
     }
-     //metodo para eliminar 
-    public void EliminarProducto(int idProducto){
+    
+    
+    //metodo para eliminar producto
+    public void EliminarProducto(int idProducto) {
         String SQL = "DELETE FROM productos  WHERE idProd = ?;";
         try {
             ps = con.prepareStatement(SQL);
@@ -52,11 +57,12 @@ public class ProductosDAO extends Conexion{
             ps.executeUpdate();
             con.close();
         } catch (Exception ex) {
-            System.out.println("ERROR al eliminar prodcutos... " + ex);
+            System.out.println("ERROR al eliminar producto... " + ex);
         }
     }
-    //metodo para listar el prodcuto a editar por id
-    public Producto MostrarProducto(int idProducto){
+
+    //metodo para listar el producto a editar por id
+    public Producto MostrarProductoEditar(int idProducto) {
         Producto producto = new Producto();
         String SQL = "SELECT * FROM productos WHERE idProd = ?;";
         try {
@@ -65,22 +71,23 @@ public class ProductosDAO extends Conexion{
             rs = ps.executeQuery();
             if (rs.next()) {
                 producto.setDescripcion(rs.getString(2));
-                producto.setPrecio(rs.getInt(3));
+                producto.setPrecio(rs.getDouble(3));
                 producto.setStock(rs.getInt(4));
                 producto.setCategoria(rs.getString(5));
             }
         } catch (Exception ex) {
-            System.out.println("ERROR al obtener el productos por ID... "+ex);
+            System.out.println("ERROR al obtener el productos por ID... " + ex);
         }
         return producto;
     }
-     //metodo para actualizar usuario
-    public void ActualizarProducto(Producto prod){
-        String SQL = "UPDATE producto SET descripcion = ?, precio = ?, stock = ?, categoria = ? WHERE idProd = ?;";
+    //metodo para actualizar usuario
+
+    public void ActualizarProducto(Producto prod) {
+        String SQL = "UPDATE productoS SET descripcion = ?, precio = ?, stock = ?, categoria = ? WHERE idProd = ?;";
         try {
             ps = con.prepareStatement(SQL);
             ps.setString(1, prod.getDescripcion());
-            ps.setInt(2, prod.getPrecio());
+            ps.setDouble(2, prod.getPrecio());
             ps.setInt(3, prod.getStock());
             ps.setString(4, prod.getCategoria());
             ps.setInt(5, prod.getIdProd());
@@ -90,5 +97,4 @@ public class ProductosDAO extends Conexion{
         }
     }
 
-    
 }

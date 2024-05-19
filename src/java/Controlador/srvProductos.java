@@ -40,25 +40,26 @@ public class srvProductos extends HttpServlet{
         if (accion != null) {
             switch (accion) {
                 case "Listar":
-                    List lista = productodao.RecuperarProducto();
+                    List lista = productodao.RecuperarRegistrosProducto();
                     request.setAttribute("listaproductos", lista);
                     request.getRequestDispatcher("productos.jsp").forward(request, response);
                     break;
                     
                 case "agregar":
                     String descripcion = request.getParameter("descripcion");
-                    int precio = Integer.parseInt(request.getParameter("precio"));
+                    double precio = Double.parseDouble(request.getParameter("precio"));
                     int stock = Integer.parseInt(request.getParameter("stock"));
                     String categoria = request.getParameter("categoria"); 
                     producto.setDescripcion(descripcion);
                     producto.setPrecio(precio);
                     producto.setStock(stock);
                     producto.setCategoria(categoria);
-                    request.getRequestDispatcher("srvPrductos?accion=Listar").forward(request, response); 
+                    productoDAO.InsertarProducto(producto);
+                    request.getRequestDispatcher("srvProductos?accion=Listar").forward(request, response); 
                     break; 
                 case "editar":
                     idProducto = Integer.parseInt(request.getParameter("id"));
-                    Producto productoid = productodao.MostrarProducto(idProducto);
+                    Producto productoid = productodao.MostrarProductoEditar(idProducto);
                     request.setAttribute("productoSeleccionado", productoid);
                     request.getRequestDispatcher("srvProductos?accion=Listar").forward(request, response);
                     
@@ -66,7 +67,7 @@ public class srvProductos extends HttpServlet{
                 
                 case "actualizar":
                     String descripcionUpdate = request.getParameter("descripcion");
-                    int precioUpdate = Integer.parseInt(request.getParameter("precio"));
+                    double precioUpdate = Double.parseDouble(request.getParameter("precio"));
                     int stockUpdate = Integer.parseInt(request.getParameter("stock"));
                     String categoriaUpdate = request.getParameter("categoria");
                     producto.setDescripcion(descripcionUpdate);
@@ -82,7 +83,7 @@ public class srvProductos extends HttpServlet{
                 case "eliminar":
                     idProducto = Integer.parseInt(request.getParameter("id"));
                     productoDAO.EliminarProducto(idProducto);
-                    request.getRequestDispatcher("srvProdcutos?accion=Listar").forward(request, response);
+                    request.getRequestDispatcher("srvProductos?accion=Listar").forward(request, response);
                     
                     break;
 
@@ -90,7 +91,7 @@ public class srvProductos extends HttpServlet{
             }
             
         } else {
-            response.sendRedirect("productos.jsp");
+            response.sendRedirect("srvProductos?accion=Listar");
         }
 
     }

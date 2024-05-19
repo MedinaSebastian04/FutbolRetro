@@ -1,29 +1,27 @@
-
 package Modelo;
-
-import java.util.List;
-
 
 public class Producto {
     private int idProd;
     private String descripcion;
-    private int precio;
+    private double precio;
     private int stock;
     private String categoria;
-    
+
     //constructor vacio 
-    public Producto(){}
-    
+    public Producto() {
+    }
+
     //constructor inicializado
 
-    public Producto(int idProd, String descripcion, int precio, int stock, String categoria) {
+    public Producto(int idProd, String descripcion, double precio, int stock, String categoria) {
         this.idProd = idProd;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
         this.categoria = categoria;
     }
-
+    
+    //getter y setter
     public int getIdProd() {
         return idProd;
     }
@@ -40,11 +38,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -63,16 +61,5 @@ public class Producto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    public List RecuperarProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
-    
-
-   
-    
-    
-    
-    
-}
+}   

@@ -1,6 +1,6 @@
-<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Modelo.Producto" %>
+<%@page import="Modelo.Usuario"%>
+<%@page import="Modelo.Producto" %>
 <%@page import="DAO.*" %>
 <%@page import="java.util.*" %>
 <%
@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="css/productosCSS.css" rel="stylesheet" type="text/css"/>
+        <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
         <link href="css/productosCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Productos</title>
 
@@ -62,27 +62,13 @@
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana productos -->
                 <div class="info">
-                    <!--AVISAN PLIS SI ESTA BIEN :'( -->
 
-                    <style>
-                        /* Estilos para la tabla */
-                        table {
-                            width: 100%;
-                            background-color: white; /* Color de fondo negro */
-                            color: white; /* Color del texto blanco */
-                        }
-                    </style>
-
-                    <div class="container">
-                        <div class="row">
+                    <div class="container-productos">
+                        <div class="ventana-productos">
                             <!-- Lado izquierdo: Formulario de registro de productos -->
-                            <div class="col-md-6">
+                            <div class="izquierda">
                                 <h2 class="text-center">Registro de Productos</h2>
-                                <form id="formulario-producto">
-                                    <div class="form-group">
-                                        <label for="codigoProd">Código de Producto:</label>
-                                        <input type="text" class="form-control" id="codigoProd" name="codigoProd" value="<%= (productoSeleccionado != null ? productoSeleccionado.getIdProd() : "")%>" required>
-                                    </div>
+                                <form id="formulario-producto" action="srvProductos" method="post">
                                     <div class="form-group">
                                         <label for="descripcion">Descripción:</label>
                                         <input type="text" class="form-control" id="descripcion" name="descripcion" value="<%= (productoSeleccionado != null ? productoSeleccionado.getDescripcion() : "")%>"  required>
@@ -98,9 +84,9 @@
                                     <div class="form-group">
                                         <label for="categoria">Categoría:</label>
                                         <select class="form-control" id="categoria" name="categoria" value="<%= (productoSeleccionado != null ? productoSeleccionado.getCategoria() : "")%>" required>
-                                            <option value="cam_club">CAMISETA CLUB ANTIGUA</option>
-                                            <option value="cam_club">CAMISETAS CLUB ACTUAL</option>
-                                            <option value="cam_club">BALONES </option>
+                                            <option value="CAMISETA CLUB ANTIGUA" <%= (productoSeleccionado != null ? (productoSeleccionado.getCategoria().equalsIgnoreCase("CAMISETA CLUB ANTIGUA") ? "selected" : "") : "")%>>CAMISETA CLUB ANTIGUA</option>
+                                            <option value="CAMISETA CLUB ACTUAL" <%= (productoSeleccionado != null ? (productoSeleccionado.getCategoria().equalsIgnoreCase("CAMISETA CLUB ACTUAL") ? "selected" : "") : "")%>>CAMISETA CLUB ACTUAL</option>
+                                            <option value="BALON" <%= (productoSeleccionado != null ? (productoSeleccionado.getCategoria().equalsIgnoreCase("BALON") ? "selected" : "") : "")%>>BALON</option>
                                             <!-- Agrega más opciones de categorías aquí si es necesario -->
                                         </select>
                                     </div>
@@ -111,16 +97,18 @@
                                 </form>
                             </div>
                             <!-- Lado derecho: Tabla de productos -->
-                            <div class="col-md-6">
+                            <div class="derecha">
                                 <h2 class="text-center">Lista de Productos</h2>
+                                
                                 <table class="table"> 
-                                    <thead>
+                                    <thead class="cabecera">
                                         <tr>
                                             <th>CODIGO PRODUCTO</th>
                                             <th>DESCRIPCION</th>
                                             <th>PRECIO</th>
-                                            <th>SROCK</th>
+                                            <th>STOCK</th>
                                             <th>CATEGORIA</th>
+                                            <th>ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody class="contenido">
@@ -135,8 +123,8 @@
                                             <td><%= productos.getCategoria()%></td>                                           
                                             <td class="btn-group">
                                                 <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
-                                                <a class="btn btn-primary" href="srvUsuario?accion=editar&id=<%= productos.getIdProd()%>">Editar</a>
-                                                <a class="btn btn-danger" href="srvUsuario?accion=eliminar&id=<%= productos.getIdProd()%>">Eliminar</a>
+                                                <a class="btn btn-primary" href="srvProductos?accion=editar&id=<%= productos.getIdProd()%>">Editar</a>
+                                                <a class="btn btn-danger" href="srvProductos?accion=eliminar&id=<%= productos.getIdProd()%>">Eliminar</a>
                                             </td>
                                         </tr>
                                         <% }
@@ -146,7 +134,7 @@
                                         </tr>
                                         <% }%>
                                     </tbody>
-                                </table>>
+                                </table>
                             </div>
                         </div>
                     </div>
