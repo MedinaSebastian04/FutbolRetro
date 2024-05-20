@@ -1,31 +1,53 @@
 package Modelo;
 
 public class Cliente {
-    private int id;
+    private Integer idCliente;
+    private Integer dni;
     private String nombre;
     private String apellido;
-    private int telefono;
-    private String correo;
+    private Integer telefono;
+     private String correo;
     
     // Constructor vacío
     public Cliente() {}
 
     // Constructor inicializado
-    public Cliente(int id, String nombre, String apellido, int telefono, String correo) {
-        this.id = id;
+
+    public Cliente(Integer idCliente, Integer dni, String nombre, String apellido, Integer telefono, String correo) {
+        this.idCliente = idCliente;
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
     }
     
+        
+    
     // Getters y Setters
-    public int getId() {
-        return id;
+
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -44,21 +66,19 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public int getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
+    
+    
+    
 
-    public String getCorreo() {
-        return correo;
-    }
+    
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
 }
 
 

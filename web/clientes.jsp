@@ -67,6 +67,10 @@
                                 <h3 class="text-center">Registro de Clientes</h3>
                                 <form id="formulario-cliente" action="srvCliente" method="post">
                                     <div class="form-group">
+                                        <label for="dni">DN:</label>
+                                        <input type="number" class="form-control" id="dni" name="dni" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getDni(): "")%>" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="nombre">NOMBRE:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getNombre() : "")%>" required>
                                     </div>
@@ -95,7 +99,7 @@
                                     <table class="table">
                                         <thead class="cabecera">
                                             <tr>
-                                                <th>COD CLIENTE</th>
+                                                <th>DNI</th>
                                                 <th>NOMBRE</th>
                                                 <th>APELLIDO</th>
                                                 <th>TELÉFONO</th>
@@ -109,15 +113,15 @@
                                                 if (listaClientes != null) {
                                                     for (Cliente clientes : listaClientes) {%>
                                             <tr>
-                                                <td><%= clientes.getId()%></td>
+                                                <td><%= clientes.getDni()%></td>
                                                 <td><%= clientes.getNombre()%></td>
                                                 <td><%= clientes.getApellido()%></td>
                                                 <td><%= clientes.getTelefono()%></td>
                                                 <td><%= clientes.getCorreo()%></td>
                                                 <td class="btn-group">
                                                     <!-- Aquí puedes agregar botones para acciones como editar o eliminar -->
-                                                    <a class="btn btn-primary" href="srvCliente?accion=editar&id=<%= clientes.getId()%>">Editar</a>
-                                                    <a class="btn btn-danger" href="srvCliente?accion=eliminar&id=<%= clientes.getId()%>">Eliminar</a>
+                                                    <a class="btn btn-primary" href="srvCliente?accion=editar&id=<%= clientes.getIdCliente()%>">Editar</a>
+                                                    <a class="btn btn-danger" href="srvCliente?accion=eliminar&id=<%= clientes.getIdCliente()%>">Eliminar</a>
                                                 </td>
                                             </tr>
                                             <% }

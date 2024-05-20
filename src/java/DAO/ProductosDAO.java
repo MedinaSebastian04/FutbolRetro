@@ -1,11 +1,13 @@
-package DAO;
+    package DAO;
 
 import Modelo.Producto;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductosDAO extends Conexion {
-
+    
+    int r;
+    
     public ProductosDAO(){}
     
     //método que recupera en una coleccion todo los productos de una tabla
@@ -70,6 +72,7 @@ public class ProductosDAO extends Conexion {
             ps.setInt(1, idProducto);
             rs = ps.executeQuery();
             if (rs.next()) {
+                producto.setIdProd(rs.getInt(1));
                 producto.setDescripcion(rs.getString(2));
                 producto.setPrecio(rs.getDouble(3));
                 producto.setStock(rs.getInt(4));
@@ -96,5 +99,40 @@ public class ProductosDAO extends Conexion {
             System.out.println("ERROR al actualizar producto... " + ex);
         }
     }
-
+    
+    
+    
+    
+    
+    //METODOS PARA BUSCAR ID PARA CAJA.JSP
+    public Producto buscar (int id){
+        Producto p = new Producto();
+        String SQL = "SELECT * FROM productos WHERE idProd ="+id;
+        try {
+            ps = con.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                p.setIdProd(rs.getInt(1));
+                p.setDescripcion(rs.getString(2));
+                p.setPrecio(rs.getDouble(3));
+                p.setStock(rs.getInt(4));
+                p.setCategoria(rs.getString(5));
+                
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }
+    
+    public int actualizarStock(int id, int stock){
+        String SQL = "UPDATE productos set stock=? where idProd=?";
+        try {
+            ps = con.prepareStatement(SQL);
+            ps.setInt(1, stock);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return r;
+    }
 }

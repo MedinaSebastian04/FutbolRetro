@@ -36,10 +36,12 @@ public class srvCliente extends HttpServlet {
                     break;
                     
                 case "agregar":
+                    int dni = Integer.parseInt(request.getParameter("dni"));
                     String nombre = request.getParameter("nombre");
                     String apellido = request.getParameter("apellido");
                     int telefono = Integer.parseInt(request.getParameter("telefono"));
                     String correo = request.getParameter("correo");
+                    cliente.setIdCliente(dni);
                     cliente.setNombre(nombre);
                     cliente.setApellido(apellido);
                     cliente.setTelefono(telefono);
@@ -56,15 +58,17 @@ public class srvCliente extends HttpServlet {
                     break;
                 
                 case "actualizar":
+                    int dniUpdate = Integer.parseInt(request.getParameter("dni"));
                     String nombreUpdate = request.getParameter("nombre");
                     String apellidoUpdate = request.getParameter("apellido");
                     int telefonoUpdate = Integer.parseInt(request.getParameter("telefono"));
                     String correoUpdate = request.getParameter("correo");
+                    cliente.setDni(dniUpdate);
                     cliente.setNombre(nombreUpdate);
                     cliente.setApellido(apellidoUpdate);
                     cliente.setTelefono(telefonoUpdate);
                     cliente.setCorreo(correoUpdate);
-                    cliente.setId(idCliente);
+                    cliente.setIdCliente(idCliente);
                     clienteDAO.actualizarCliente(cliente);
                     request.getRequestDispatcher("srvCliente?accion=Listar").forward(request, response);
                     break;

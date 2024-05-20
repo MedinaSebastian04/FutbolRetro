@@ -6,23 +6,55 @@
     border: 1px solid;
 }
 
-table {
+.container-caja{
+   padding: 20px;
+}
+
+.ventana-caja{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     width: 100%;
-    border-collapse: collapse;
+    padding: 0;
 }
 
-table, th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+/* Formulario para agregar un venta */
+
+#formulario-venta{
+    width: 650px;
+    height: 600px;
 }
 
-th {
-    background-color: #f2f2f2;
+.card-body{
+    border: 1px solid #2874A6;
+    padding: 15px;
 }
 
-/* Ajustar el tamaño de la fuente en el formulario */
-#formulario-venta label,
-#formulario-venta input {
-    font-size: 14px;
+/* Tabla de la venta a realizar*/
+
+#nroserie{
+    margin-bottom: 5px;
+}
+
+#tabla-ventas {
+    background-color: white;
+    margin-bottom: 0;
+}
+
+.cabecera-venta{
+    text-align: center;
+    background-color: #3498DB;
+    
+}
+
+.derecha{
+    width: 900px;
+}
+
+.scroll{
+    height: 350px; /* Altura fija para el div */
+    overflow-y: auto; /* Agregar scroll vertical si el contenido excede la altura */
+    overflow-x: hidden; /* Evitar el scroll horizontal */
+    padding-right: 15px; /* Añadir espacio para evitar el solapamiento del scroll */
+    border: 1px solid #ddd; /* Bordes opcionales para visualizar mejor */
 }

@@ -1,9 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="Modelo.Usuario" %>
+<%@page import="Modelo.*" %>
+
 <%
     // Obtener el valor del rol desde el alcance de sesión
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String rol = usuario.getRol();
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,21 +18,27 @@
         <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
         <link href="css/cajaCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Caja</title>
+        <style>
+            @media print{
+                .navegador, .izquierda, .btn, .titulo, .accion{
+                    display: none;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="container-fuera">
             <div class="container-dentro">
-                
+
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
                 <div class="navegador">
-                    <% 
-                        if (rol.equals("administrador")){
+                    <%                        if (rol.equals("administrador")) {
                     %>
                     <!-- Esto es el menu de administrador -->
                     <%@ include file="navegador/menuAdmin.jsp" %>
                     <!-- -->
                     <%
-                        }else{
+                    } else {
                     %>
                     <!-- Esto es el menu de empleado -->
                     <%@ include file="navegador/menuEmpleado.jsp" %>
@@ -36,7 +46,7 @@
                     <%
                         }
                     %>
-                    
+
                     <div class="exit">
                         <a href="login.jsp">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i>
@@ -45,64 +55,108 @@
                     </div>
                 </div>
                 <!-- -->
-                
-                
+
+
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana caja -->
                 <div class="info">
                     <!--AVISAN PLIS SI ESTA BIEN :'( -->
-                                
-                <div class="container">
-                        <h2 class="text-center">Registro de Ventas</h2>
-                        
-                        <div class="row">
+
+                    <div class="container-caja">
+                        <h2 class="text-center titulo">Registro de Ventas</h2>
+
+                        <div class="ventana-caja">
                             <!-- Formulario de venta en el lado izquierdo -->
-                            <div class="col-md-6">
-                                <form id="formulario-venta">
-                                    <div class="form-group">
-                                        <label for="codCliente">COD CLIENTE:</label>
-                                        <input type="text" class="form-control" id="codCliente" name="codCliente" required>
+                            <div class="izquierda">
+                                <form id="formulario-venta" action="srvCaja" method="post">
+                                    <div class="card-body">
+
+                                        <label>Datos del Cliente</label>
+                                        <div class="form-group d-flex">
+                                            <div class="col-md-4 d-flex">
+                                                <input type="text" name="dnicliente" value="${c.getDni()}" placeholder="DNI" class="form-control">
+                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarCliente" id="buscarcliente">Buscar</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="nombrecliente" value="${c.getNombre()} ${c.getApellido()}" placeholder="Datos Cliente" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <label>Datos del producto</label>
+                                        <div class="form-group d-flex">
+                                            <div class="col-md-4 d-flex">
+                                                <input type="text" name="codigoproducto" value="${producto.getIdProd()}" placeholder="Codigo" class="form-control" >
+                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarProducto" id="buscarproducto">Buscar</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="nombreproducto" value="${producto.getDescripcion()}" placeholder="Datos Producto" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group d-flex">
+                                            <div class="col-md-4 d-flex">
+                                                <input type="text" name="precio" value="${producto.getPrecio()}" class="form-control" placeholder="S/. 0.00" >
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" name="cant" value="1" placeholder="Cantidad" class="form-control">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!-- BOTON PARA AGREGAR PRODUCTO AL REGISTRO -->
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-outline-info" name="accion" value="Agregar" id="agregarventa">Agregar</button>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="codProducto">COD PRODUCTO:</label>
-                                        <input type="text" class="form-control" id="codProducto" name="codProducto" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="precio">PRECIO:</label>
-                                        <input type="number" class="form-control" id="precio" name="precio" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cantidad">CANTIDAD:</label>
-                                        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cliente">CLIENTE:</label>
-                                        <input type="text" class="form-control" id="cliente" name="cliente" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="producto">PRODUCTO:</label>
-                                        <input type="text" class="form-control" id="producto" name="producto" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Registrar Venta</button>
                                 </form>
+
                             </div>
-                            <!-- Tabla de ventas en el lado derecho -->
-                            <div class="col-md-6">
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">COD CLIENTE</th>
-                                            <th scope="col">COD PRODUCTO</th>
-                                            <th scope="col">PRECIO</th>
-                                            <th scope="col">CANTIDAD</th>
-                                            <th scope="col">CLIENTE</th>
-                                            <th scope="col">PRODUCTO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tabla-ventas">
-                                        <!-- Aquí se insertarán las filas de la tabla dinámicamente -->
-                                    </tbody>
-                                </table>
+
+                            <!-- Tabla para ver los productos-->
+                            <!-- Tabla de ventas -->
+                            <div class="derecha">
+                                <div class="d-flex col-sm-5 ml-auto" id="nroserie">
+                                    <label>Nro.Serie:</label>
+                                    <input type="text" name="NroSerie" value="${nserie}" class="form-control">
+                                </div>
+                                <div class="scroll">
+                                    <table class="table" id="tabla-ventas">
+                                        <thead class="cabecera-venta">
+                                            <tr>
+                                                <th>Nro</th>
+                                                <th>Descripcion</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>SubTotal</th>
+                                                <th class="accion">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contenido-venta">
+                                            <c:forEach var="list" items="${listaVentas}">
+                                                <tr>
+                                                    <th>${list.getItem()}</th>
+                                                    <th>${list.getDescripcionProd()}</th>
+                                                    <th>${list.getPrecioProd()}</th>
+                                                    <th>${list.getCantProd()}</th>
+                                                    <th>${list.getSubtotal()}</th>
+                                                    <th>
+                                                        <a class="btn btn-danger" href="">Eliminar</a> 
+                                                    </th>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="col-sm-5">
+                                        <a href="srvCaja?accion=GenerarVenta" class="btn btn-success" onclick="print()">Generar Venta</a>
+                                        <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
+                                    </div>
+                                    <div class="col-sm-3 ml-auto">
+                                        <input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

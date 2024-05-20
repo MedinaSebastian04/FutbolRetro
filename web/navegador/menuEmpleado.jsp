@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div class="menu">
-    <a href="caja.jsp">
+    <a href="srvCaja?accion=default">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-cash-register"></i>
             <p>CAJA</p>
