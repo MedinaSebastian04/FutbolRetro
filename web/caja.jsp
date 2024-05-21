@@ -24,6 +24,16 @@
                     display: none;
                 }
             }
+            .info {
+            background-image: url('img/gif3.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Estilos adicionales para el contenedor */
+            /* Por ejemplo, puedes establecer la altura, el ancho, la alineación, etc. */
+            min-height: 100vh; /* Esto asegurará que el fondo cubra todo el viewport */
+            /* Añade más estilos según sea necesario */
+        }
         </style>
     </head>
     <body>
