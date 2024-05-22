@@ -62,10 +62,6 @@
     
 }
 
-.contenido tr{
-    align-items: center;
-}
-
 .btn-group{
     display: flex;
     text-align: center;

@@ -7,7 +7,7 @@
 }
 
 .container-caja{
-   padding: 20px;
+    padding: 20px;
 }
 
 .ventana-caja{
@@ -20,15 +20,26 @@
 
 /* Formulario para agregar un venta */
 
+.izquierda{
+
+}
+
 #formulario-venta{
     width: 650px;
-    height: 600px;
+
 }
 
 .card-body{
     border: 1px solid #2874A6;
     padding: 15px;
 }
+
+.d-flex{
+    width: 100%;
+
+}
+
+
 
 /* Tabla de la venta a realizar*/
 
@@ -44,11 +55,11 @@
 .cabecera-venta{
     text-align: center;
     background-color: #3498DB;
-    
+
 }
 
 .derecha{
-    width: 900px;
+    width: 700px;
 }
 
 .scroll{
@@ -57,4 +68,38 @@
     overflow-x: hidden; /* Evitar el scroll horizontal */
     padding-right: 15px; /* Añadir espacio para evitar el solapamiento del scroll */
     border: 1px solid #ddd; /* Bordes opcionales para visualizar mejor */
+    background-color: white;
+}
+
+
+
+@media print {
+    .navegador, .izquierda, .btn, #titulo-caja, .accion{
+        display: none !important;
+    }
+    .cliente-info, .titulo-impresion {
+        display: block !important;
+        margin: 20px auto;
+    }
+    #tabla-ventas {
+        width: 100%;
+        font-size: 16px; /* Ajusta el tamaño de la fuente para que sea más legible en la impresión */
+    }
+
+    .scroll {
+        height: auto;
+    }
+
+    .card-footer {
+        display: none; /* Oculta el pie de página en la impresión */
+    }
+
+    .container-dentro{
+        width: 100%;
+        height: 100%;
+
+    }
+}
+.cliente-info, .titulo-impresion {
+    display: none;
 }

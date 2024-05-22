@@ -21,7 +21,7 @@
         </div>
     </a>
 
-    <a href="ventas.jsp">
+    <a href="srvVenta?accion=Listar">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-chart-column"></i>
             <p>VENTAS</p>

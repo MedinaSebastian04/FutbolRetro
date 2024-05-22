@@ -19,48 +19,47 @@
         <link href="css/cajaCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Caja</title>
         <style>
-             body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #FFFFFF; /* Color blanco */
-    background-image: linear-gradient(to right, blue 25%, #FFFFFF 25%, #FFFFFF 50%, green 50%, #FFFFFF 75%, yellow 75%); /* Patrón alternado de colores */
-    background-size: 400% 100%; /* Cuatro veces el tamaño necesario para repetir la secuencia */
-    animation: gradient 8s linear infinite; /* Animación de desplazamiento */
-}
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: #FFFFFF; /* Color blanco */
+                background-image: linear-gradient(to right, blue 25%, #FFFFFF 25%, #FFFFFF 50%, green 50%, #FFFFFF 75%, yellow 75%); /* Patrón alternado de colores */
+                background-size: 400% 100%; /* Cuatro veces el tamaño necesario para repetir la secuencia */
+                animation: gradient 8s linear infinite; /* Animación de desplazamiento */
+            }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%; /* Comienza con blanco */
-    }
-    25% {
-        background-position: 100% 50%; /* Cambia a azul */
-    }
-    50% {
-        background-position: 0% 50%; /* Cambia a verde */
-    }
-    75% {
-        background-position: 100% 50%; /* Cambia a amarillo */
-    }
-    100% {
-        background-position: 0% 50%; /* Vuelve a blanco */
-    }
-}
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%; /* Comienza con blanco */
+                }
+                25% {
+                    background-position: 100% 50%; /* Cambia a azul */
+                }
+                50% {
+                    background-position: 0% 50%; /* Cambia a verde */
+                }
+                75% {
+                    background-position: 100% 50%; /* Cambia a amarillo */
+                }
+                100% {
+                    background-position: 0% 50%; /* Vuelve a blanco */
+                }
+            }
             @media print{
                 .navegador, .izquierda, .btn, .titulo, .accion{
                     display: none;
                 }
             }
             .info {
-            background-image: url('img/realmadrid1.gif');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            /* Estilos adicionales para el contenedor */
-            /* Por ejemplo, puedes establecer la altura, el ancho, la alineación, etc. */
-            min-height: 100vh; /* Esto asegurará que el fondo cubra todo el viewport */
-            /* Añade más estilos según sea necesario */
-        }
+                background-image: url('img/realmadrid1.gif');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                /* Estilos adicionales para el contenedor */
+                /* Por ejemplo, puedes establecer la altura, el ancho, la alineación, etc. */
+                
+            }
         </style>
     </head>
     <body>
@@ -100,7 +99,7 @@
                     <!--AVISAN PLIS SI ESTA BIEN :'( -->
 
                     <div class="container-caja">
-                        <h2 class="text-center titulo">Registro de Ventas</h2>
+                        <h2 class="text-center titulo" id="titulo-caja">CAJA</h2>
 
                         <div class="ventana-caja">
                             <!-- Formulario de venta en el lado izquierdo -->
@@ -109,8 +108,8 @@
                                     <div class="card-body">
 
                                         <label>Datos del Cliente</label>
-                                        <div class="form-group d-flex">
-                                            <div class="col-md-4 d-flex">
+                                        <div class="form-group d-flex cliente">
+                                            <div class="col-md-4 d-flex" id="buscar">
                                                 <input type="text" name="dnicliente" value="${c.getDni()}" placeholder="DNI" class="form-control">
                                                 <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarCliente" id="buscarcliente">Buscar</button>
                                             </div>
@@ -120,9 +119,9 @@
                                         </div>
 
                                         <label>Datos del producto</label>
-                                        <div class="form-group d-flex">
-                                            <div class="col-md-4 d-flex">
-                                                <input type="text" name="codigoproducto" value="${producto.getIdProd()}" placeholder="Codigo" class="form-control" >
+                                        <div class="form-group d-flex producto">
+                                            <div class="col-md-4 d-flex buscar">
+                                                <input type="text" name="codigoproducto" value="${producto.getIdProd()}" placeholder="Codigo" class="form-control">
                                                 <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarProducto" id="buscarproducto">Buscar</button>
                                             </div>
                                             <div class="col-md-6">
@@ -130,7 +129,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group d-flex">
+                                        <div class="form-group d-flex producto">
                                             <div class="col-md-4 d-flex">
                                                 <input type="text" name="precio" value="${producto.getPrecio()}" class="form-control" placeholder="S/. 0.00" >
                                             </div>
@@ -153,6 +152,13 @@
                             <!-- Tabla para ver los productos-->
                             <!-- Tabla de ventas -->
                             <div class="derecha">
+                                <div class="titulo-impresion">
+                                    <h2 class="text-center">Factura de venta</h2>
+                                </div>
+                                <div class="cliente-info">
+                                    <p>DNI: ${c.getDni()}</p>
+                                    <p>Nombre: ${c.getNombre()} ${c.getApellido()}</p>
+                                </div>
                                 <div class="d-flex col-sm-5 ml-auto" id="nroserie">
                                     <label>Nro.Serie:</label>
                                     <input type="text" name="NroSerie" value="${nserie}" class="form-control">
@@ -170,15 +176,15 @@
                                             </tr>
                                         </thead>
                                         <tbody id="contenido-venta">
-                                            <c:forEach var="list" items="${listaVentas}">
+                                            <c:forEach var="list" items="${listaVentas}" varStatus="status">
                                                 <tr>
-                                                    <th>${list.getItem()}</th>
+                                                    <th>${status.index + 1}</th>
                                                     <th>${list.getDescripcionProd()}</th>
                                                     <th>${list.getPrecioProd()}</th>
                                                     <th>${list.getCantProd()}</th>
                                                     <th>${list.getSubtotal()}</th>
                                                     <th>
-                                                        <a class="btn btn-danger" href="">Eliminar</a> 
+                                                        <a class="btn btn-danger" href="srvCaja?accion=Eliminar&idItem=${status.index}">Eliminar</a> 
                                                     </th>
                                                 </tr>
                                             </c:forEach>
@@ -188,7 +194,7 @@
                                 <div class="card-footer">
                                     <div class="col-sm-5">
                                         <a href="srvCaja?accion=GenerarVenta" class="btn btn-success" onclick="print()">Generar Venta</a>
-                                        <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
+                                        <a href="srvCaja?accion=default" class="btn btn-danger">Cancelar</a>
                                     </div>
                                     <div class="col-sm-3 ml-auto">
                                         <input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">

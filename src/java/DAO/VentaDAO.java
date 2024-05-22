@@ -1,6 +1,9 @@
 package DAO;
 
+import Modelo.DetalleVenta;
 import Modelo.Venta;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VentaDAO extends Conexion {
 
@@ -10,7 +13,7 @@ public class VentaDAO extends Conexion {
 
     public String GenerarSerie() {
         String numeroserie = "";
-        String SQL = "SELECT max(numeroSerie) from venta";
+        String SQL = "SELECT max(numeroSerie) from ventas";
         try {
             ps = con.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -66,6 +69,58 @@ public class VentaDAO extends Conexion {
         } catch (Exception e) {
         }
         return r;
+    }
+    
+    
+   
+    // METODOS PARA LA VENTANA VENTA
+    public List RecuperarRegistrosVentas() {
+        String SQL = "SELECT v.idVenta, v.numeroSerie, v.fecha, c.nombre, c.apellido, v.precioTotal, dv.descripcionProd, p.categoria, dv.cantidadProd, dv.precioProd, dv.subTotal "+
+                     "FROM ventas v INNER JOIN detalleVenta dv ON v.idVenta = dv.idVenta INNER JOIN clientes c ON v.idCliente = c.idCliente INNER JOIN productos p ON dv.idProd = p.idProd "+
+                     "ORDER BY dv.idDetalleVenta;";
+        List<DetalleVenta> listaVentas = new ArrayList();
+        try {
+            ps = con.prepareStatement(SQL);
+            rs = ps.executeQuery();//ejecutamos la consulta
+            while (rs.next()) { //recorremos todos los registros
+                DetalleVenta detventa = new DetalleVenta();//creamos el objeto
+                detventa.setIdVenta(rs.getInt(1));
+                detventa.setNumSerie(rs.getString(2));
+                detventa.setFecha(rs.getString(3));
+                detventa.setNomCliente(rs.getString(4));
+                detventa.setApellCliente(rs.getString(5));
+                detventa.setMontoTotal(rs.getDouble(6));
+                detventa.setDescripcion(rs.getString(7));
+                detventa.setCategoria(rs.getString(8));
+                detventa.setCantidadProd(rs.getInt(9));
+                detventa.setPrecioProd(rs.getDouble(10));
+                detventa.setSubtotalProd(rs.getDouble(11));
+                listaVentas.add(detventa); //agregamos el objeto a la lista
+            }
+        } catch (Exception ex) {
+            System.out.println("ERROR no se puede traer la lista de registro de ventas a la base de datos. " + ex);
+        }
+        return listaVentas; // retornamos la lista con todos los registros
+    }
+    
+    //metodo para eliminar registro de venta
+    public void EliminarRegistroVenta(int id) {
+        String SQL1 = "DELETE FROM detalleVenta  WHERE idVenta  =?;";
+        try {
+            ps = con.prepareStatement(SQL1);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("ERROR al eliminar registro producto... " + ex);
+        }
+        String SQL2 = "DELETE FROM ventas WHERE idVenta  =?;";
+        try {
+            ps = con.prepareStatement(SQL2);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("ERROR al eliminar registro producto... " + ex);
+        }
     }
 }
 
