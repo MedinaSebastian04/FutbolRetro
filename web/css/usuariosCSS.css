@@ -1,28 +1,16 @@
-body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Altura del viewport */
-}
 .info{
     background-color: #E5E8E8;
-    height: 640px; /* Altura*/
+
     margin: 15px;
     margin-top: 30px;
     border: 1px solid;
 }
 
 .container-usuarios{
-    height: 100vh;
    padding: 20px;
 }
 
 .ventana-usuarios{
-   height: calc(100vh - 70px); 
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -30,9 +18,30 @@ body {
     padding: 0;
 }
 
+.formulario-usuario {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-#formulario-usuario{
-    width: 350px;
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 5px;
+}
+
+.form-group input, .form-group select {
+    width: calc(100% - 10px);
+    padding: 8px 5px;
+    font-size: 14px;
+    margin: 0 5px;
 }
 
 #agregar{
@@ -73,10 +82,6 @@ body {
     text-align: center;
     background-color: #A2D9CE;
     
-}
-
-.contenido tr{
-    align-items: center;
 }
 
 .btn-group{

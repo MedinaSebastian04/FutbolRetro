@@ -24,61 +24,7 @@
         <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
         <link href="css/usuariosCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Usuarios</title>
-        <link rel="stylesheet" href="ruta/a/bootstrap.css">
-        <style>
-            body {
-                
-                margin: 0;
-                padding: 0;
-                font-family: Arial, sans-serif;
-                background-color: #FFFFFF; /* Color blanco */
-                background-image: linear-gradient(to right, blue 25%, #FFFFFF 25%, #FFFFFF 50%, green 50%, #FFFFFF 75%, yellow 75%); /* Patrón alternado de colores */
-                background-size: 400% 100%; /* Cuatro veces el tamaño necesario para repetir la secuencia */
-                animation: gradient 8s linear infinite; /* Animación de desplazamiento */
-            }
-
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%; /* Comienza con blanco */
-                }
-                25% {
-                    background-position: 100% 50%; /* Cambia a azul */
-                }
-                50% {
-                    background-position: 0% 50%; /* Cambia a verde */
-                }
-                75% {
-                    background-position: 100% 50%; /* Cambia a amarillo */
-                }
-                100% {
-                    background-position: 0% 50%; /* Vuelve a blanco */
-                }
-            }
-            .background-gif {
-                background-image: url('img/gif2.gif');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-            }
-            .izquierda, .derecha {
-                position: relative;
-            }
-            .izquierda::before, .derecha::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para mejor legibilidad */
-                z-index: 1;
-            }
-            .izquierda form, .derecha .scroll {
-                position: relative;
-                z-index: 2;
-            }
-        </style>
-
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">   
     </head>
     <body>
         <div class="container-fuera" style="">
@@ -119,7 +65,7 @@
                             <!-- Lado izquierdo: Formulario de registro de usuarios -->
                             <div class="izquierda">
                                 <h3 class="text-center">Registro de Usuarios</h3>
-                                <form id="formulario-usuario" action="srvUsuario" method="post">
+                                <form class="formulario-usuario" action="srvUsuario" method="post">
                                     <div class="form-group">
                                         <label for="nombre"style="padding: 13px;">NOMBRE:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getNombre() : "")%>"required>
@@ -189,7 +135,7 @@
                                                 </td>
                                             </tr>
                                             <% }
-                                        } else { %>
+                                            } else { %>
                                             <tr>
                                                 <td colspan="6">No hay usuarios disponibles</td>
                                             </tr>
