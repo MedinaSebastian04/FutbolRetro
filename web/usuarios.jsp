@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="ruta/a/bootstrap.css">
         <style>
             body {
+                
                 margin: 0;
                 padding: 0;
                 font-family: Arial, sans-serif;
@@ -80,7 +81,7 @@
 
     </head>
     <body>
-        <div class="container-fuera">
+        <div class="container-fuera" style="">
             <div class="container-dentro">
 
                 <!-- Esto es el encabezado (navegador y el boton salir) -->
@@ -120,27 +121,27 @@
                                 <h3 class="text-center">Registro de Usuarios</h3>
                                 <form id="formulario-usuario" action="srvUsuario" method="post">
                                     <div class="form-group">
-                                        <label for="nombre">NOMBRE:</label>
+                                        <label for="nombre"style="padding: 13px;">NOMBRE:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getNombre() : "")%>"required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="apellido">APELLIDO:</label>
+                                        <label for="apellido"style="padding: 13px;">APELLIDO:</label>
                                         <input type="text" class="form-control" id="apellido" name="apellido" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getApellido() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dni">DNI:</label>
+                                        <label for="dni"style="padding: 13px;">DNI:</label>
                                         <input type="number" class="form-control" id="dni" name="dni" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getDni() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="usuario">USUARIO:</label>
+                                        <label for="usuario"style="padding: 13px;">USUARIO:</label>
                                         <input type="text" class="form-control" id="usuario" name="usuario" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getUsuario() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="contrasena">CONTRASEÑA:</label>
+                                        <label for="contrasena"style="padding: 13px;">CONTRASEÑA:</label>
                                         <input type="password" class="form-control" id="contrasena" name="contrasena" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getClave() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="rol">ROL:</label>
+                                        <label for="rol"style="padding: 13px;">ROL:</label>
                                         <select class="form-control" id="rol" name="rol" required>
                                             <option value="empleado" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("empleado") ? "selected" : "") : "")%>>EMPLEADO</option>
                                             <option value="administrador" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("administrador") ? "selected" : "") : "")%>>ADMINISTRADOR</option>
