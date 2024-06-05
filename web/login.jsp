@@ -5,37 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/loginCSS.css" rel="stylesheet" type="text/css"/>
-           <title>Futbol Retro - Login</title>
-           <style>
-        body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #FFFFFF; /* Color blanco */
-    background-image: linear-gradient(to right, blue 25%, #FFFFFF 25%, #FFFFFF 50%, green 50%, #FFFFFF 75%, yellow 75%); /* Patrón alternado de colores */
-    background-size: 400% 100%; /* Cuatro veces el tamaño necesario para repetir la secuencia */
-    animation: gradient 8s linear infinite; /* Animación de desplazamiento */
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%; /* Comienza con blanco */
-    }
-    25% {
-        background-position: 100% 50%; /* Cambia a azul */
-    }
-    50% {
-        background-position: 0% 50%; /* Cambia a verde */
-    }
-    75% {
-        background-position: 100% 50%; /* Cambia a amarillo */
-    }
-    100% {
-        background-position: 0% 50%; /* Vuelve a blanco */
-    }
-}
-
-        </style>
+           <title>Futbol Retro - Login</title>   
     </head>
     <body>
         <div class="container">

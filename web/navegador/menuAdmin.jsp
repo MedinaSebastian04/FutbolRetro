@@ -42,13 +42,13 @@
         </div>
     </a>
     
-    <a href="">
+    <a href="guia.jsp">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-file-lines"></i>
             <p>GUIA</p>
         </div>
         
-    </a><a href="">
+    </a><a href="informe.jsp">
         <div class="menu-tarjetas">
             <i class="fa-solid fa-file-lines"></i>
             <p>INFORMES</p>

@@ -4,7 +4,11 @@
 }
 body{
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-image: url('../img/fondologin.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     display: flex;
