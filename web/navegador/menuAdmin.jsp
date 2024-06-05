@@ -41,5 +41,18 @@
             <p>REPORTES</p>
         </div>
     </a>
+    
+    <a href="">
+        <div class="menu-tarjetas">
+            <i class="fa-solid fa-file-lines"></i>
+            <p>GUIA</p>
+        </div>
+        
+    </a><a href="">
+        <div class="menu-tarjetas">
+            <i class="fa-solid fa-file-lines"></i>
+            <p>INFORMES</p>
+        </div>
+    </a>
 </div>
 
