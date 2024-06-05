@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.time.LocalDateTime;
-
 public class Venta {
 
     private int idVenta;
@@ -16,34 +14,16 @@ public class Venta {
     private int idProducto;
     private String descripcionProd;
     private int cantProd;
-    private double precioProd;
+    private double precio;
+    private double igv;
+    private double precioFinal;
     private double subtotal;
 
     //contructor vacio
     public Venta() {
     }
 
-    public Venta(int idVenta, int idClienteVenta, int idEmpleadoVenta, String fecha, double totalventa, String numeroserie, int idDetalleVenta, int item, int idProducto, String descripcionProd, int cantProd, double precioProd, double subtotal) {
-        this.idVenta = idVenta;
-        this.idClienteVenta = idClienteVenta;
-        this.idEmpleadoVenta = idEmpleadoVenta;
-        this.fecha = fecha;
-        this.totalventa = totalventa;
-        this.numeroserie = numeroserie;
-        this.idDetalleVenta = idDetalleVenta;
-        this.item = item;
-        this.idProducto = idProducto;
-        this.descripcionProd = descripcionProd;
-        this.cantProd = cantProd;
-        this.precioProd = precioProd;
-        this.subtotal = subtotal;
-    }
-
-    
-    
-    
     //getter y setter
-
     public int getIdVenta() {
         return idVenta;
     }
@@ -132,12 +112,28 @@ public class Venta {
         this.cantProd = cantProd;
     }
 
-    public double getPrecioProd() {
-        return precioProd;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setPrecioProd(double precioProd) {
-        this.precioProd = precioProd;
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getIgv() {
+        return igv;
+    }
+
+    public void setIgv(double igv) {
+        this.igv = igv;
+    }
+
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public double getSubtotal() {
@@ -147,6 +143,5 @@ public class Venta {
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
-    
 
 }

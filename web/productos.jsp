@@ -101,12 +101,12 @@
                                     <table class="table"> 
                                         <thead class="cabecera">
                                             <tr>
-                                                <th>CODIGO PRODUCTO</th>
-                                                <th>DESCRIPCION</th>
-                                                <th>PRECIO</th>
-                                                <th>STOCK</th>
-                                                <th>CATEGORIA</th>
-                                                <th>ACCIONES</th>
+                                                <th>Codigo Producto</th>
+                                                <th>Descripcion</th>
+                                                <th>Precio sin IGV</th>
+                                                <th>Stock</th>
+                                                <th>Categoria</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody class="contenido">

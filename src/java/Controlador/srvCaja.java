@@ -14,6 +14,7 @@ import config.GenerarSerie;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -28,19 +29,30 @@ public class srvCaja extends HttpServlet {
     Producto p = new Producto();
     ProductosDAO pdao = new ProductosDAO();
 
+    Venta v = new Venta();
     VentaDAO vdao = new VentaDAO();
 
-    Venta v = new Venta();
     List<Venta> lista = new ArrayList<>();
+
+    ComprobantePago cp = new ComprobantePago();
+    ComprobantePagoDAO cpdao = new ComprobantePagoDAO();
+
     int item;
     int cod;
     String descripcion;
     double precio;
+    double igv;
+    double precioFinal;
     int cant;
     double subtotal;
     double totalpagar;
 
+    String comprobantePago;
+
     String numeroserie;
+    String numeroComprobantePago;
+
+    DecimalFormat df = new DecimalFormat("#.##");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -86,13 +98,31 @@ public class srvCaja extends HttpServlet {
                     cod = p.getIdProd();
                     descripcion = request.getParameter("nombreproducto");
                     precio = Double.parseDouble(request.getParameter("precio"));
+
+                    igv = precio * 0.18;
+                    // Formatear el igv con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String igvFormateado = df.format(igv);
+                    // Convertir el igv formateado de nuevo a un número double
+                    igv = Double.parseDouble(igvFormateado);
+
+                    precioFinal = precio + igv;
                     cant = Integer.parseInt(request.getParameter("cant"));
-                    subtotal = precio * cant;
+
+                    subtotal = precioFinal * cant;
+                    // Formatear el subtotal con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String subtotalFormateado = df.format(subtotal);
+                    // Convertir el subtotal formateado de nuevo a un número double
+                    subtotal = Double.parseDouble(subtotalFormateado);
+
                     v = new Venta();
                     v.setItem(item);
                     v.setIdProducto(cod);
                     v.setDescripcionProd(descripcion);
-                    v.setPrecioProd(precio);
+                    v.setPrecio(precio);
+                    v.setIgv(igv);
+                    v.setPrecioFinal(precioFinal);
                     v.setCantProd(cant);
                     v.setSubtotal(subtotal);
                     lista.add(v);
@@ -143,10 +173,51 @@ public class srvCaja extends HttpServlet {
                         v.setIdProducto(lista.get(i).getIdProducto());
                         v.setDescripcionProd(lista.get(i).getDescripcionProd());
                         v.setCantProd(lista.get(i).getCantProd());
-                        v.setPrecioProd(lista.get(i).getPrecioProd());
+                        v.setPrecio(lista.get(i).getPrecio());
+                        v.setIgv(lista.get(i).getIgv());
+                        v.setPrecioFinal(lista.get(i).getPrecioFinal());
                         v.setSubtotal(lista.get(i).getSubtotal());
                         vdao.GuardarDetallerVenta(v);
                     }
+
+                    //guardar comprobanteFactura
+                    int idVenta = cpdao.obtenerIdVentaPorNumeroSerie(numeroserie);
+                    comprobantePago = request.getParameter("tipoComprobante");
+                    cp.setTipoComprobantePago(comprobantePago);
+
+                    if (comprobantePago.equalsIgnoreCase("boleta")) {
+                        numeroComprobantePago = cpdao.GenerarComprobanteBoleta();
+                        if (numeroComprobantePago == null) {
+                            numeroComprobantePago = "00000001";
+                        } else {
+                            try {
+                                int incrementar = Integer.parseInt(numeroComprobantePago);
+                                GenerarSerie gs = new GenerarSerie();
+                                numeroComprobantePago = gs.NumeroSerie(incrementar);
+                            } catch (NumberFormatException e) {
+                                numeroComprobantePago = "00000001"; // Asignar un valor predeterminado en caso de error
+                            }
+                        }
+                        cp.setNumComprobantePago(numeroComprobantePago);
+                    } else {
+                        numeroComprobantePago = cpdao.GenerarComprobanteFactura();
+                        if (numeroComprobantePago == null) {
+                            numeroComprobantePago = "00000001";
+                        } else {
+                            try {
+                                int incrementar = Integer.parseInt(numeroComprobantePago);
+                                GenerarSerie gs = new GenerarSerie();
+                                numeroComprobantePago = gs.NumeroSerie(incrementar);
+                            } catch (NumberFormatException e) {
+                                numeroComprobantePago = "00000001"; // Asignar un valor predeterminado en caso de error
+                            }
+                        }
+                        cp.setNumComprobantePago(numeroComprobantePago);
+                    }
+
+                    cp.setIdVenta(idVenta);
+                    
+                    cpdao.GuardarComprobantePago(cp);
                     break;
 
                 default:

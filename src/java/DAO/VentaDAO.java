@@ -56,15 +56,17 @@ public class VentaDAO extends Conexion {
     }
 
     public int GuardarDetallerVenta(Venta venta) {
-        String SQL = "insert into detalleVenta(idVenta, idProd, descripcionProd, cantidadProd, precio, subTotal) values (?,?,?,?,?,?);";
+        String SQL = "insert into detalleVenta(idVenta, idProd, descripcionProd, cantidadProd, precio, igv, precioFinal, subTotal) values (?,?,?,?,?,?,?,?);";
         try {
             ps = con.prepareStatement(SQL);
             ps.setInt(1, venta.getIdVenta());
             ps.setInt(2, venta.getIdProducto());
             ps.setString(3, venta.getDescripcionProd());
             ps.setInt(4, venta.getCantProd());
-            ps.setDouble(5, venta.getPrecioProd());
-            ps.setDouble(6, venta.getSubtotal());
+            ps.setDouble(5, venta.getPrecio());
+            ps.setDouble(6, venta.getIgv());
+            ps.setDouble(7, venta.getPrecioFinal());
+            ps.setDouble(8, venta.getSubtotal());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -75,7 +77,7 @@ public class VentaDAO extends Conexion {
    
     // METODOS PARA LA VENTANA VENTA
     public List RecuperarRegistrosVentas() {
-        String SQL = "SELECT v.idVenta, v.numeroSerie, v.fecha, c.nombre, c.apellido, v.precioTotal, dv.descripcionProd, p.categoria, dv.cantidadProd, dv.precio, dv.subTotal "+
+        String SQL = "SELECT v.idVenta, v.numeroSerie, v.fecha, c.nombre, c.apellido, v.precioTotal, dv.descripcionProd, p.categoria, dv.cantidadProd, dv.precioFinal, dv.subTotal "+
                      "FROM ventas v INNER JOIN detalleVenta dv ON v.idVenta = dv.idVenta INNER JOIN clientes c ON v.idCliente = c.idCliente INNER JOIN productos p ON dv.idProd = p.idProd "+
                      "ORDER BY dv.idDetalleVenta;";
         List<DetalleVenta> listaVentas = new ArrayList();

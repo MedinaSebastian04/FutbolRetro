@@ -18,7 +18,7 @@
         <link href="css/navegadorCSS.css" rel="stylesheet" type="text/css"/>
         <link href="css/cajaCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Caja</title>
-        
+
     </head>
     <body>
         <div class="container-fuera">
@@ -95,7 +95,7 @@
                                                 <input type="number" name="cant" value="1" placeholder="Cantidad" class="form-control">
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" name="stock" value="${producto.getStock()}" placeholder="Stock" class="form-control">
+                                                <input type="text" name="stock" value="Stock: ${producto.getStock()}" placeholder="Stock" class="form-control">
                                             </div>
                                         </div>
                                         <!-- BOTON PARA AGREGAR PRODUCTO AL REGISTRO -->
@@ -128,6 +128,8 @@
                                                 <th>Nro</th>
                                                 <th>Descripcion</th>
                                                 <th>Precio</th>
+                                                <th>IGV</th>
+                                                <th>Precio Final</th>
                                                 <th>Cantidad</th>
                                                 <th>SubTotal</th>
                                                 <th class="accion">Acciones</th>
@@ -138,7 +140,9 @@
                                                 <tr>
                                                     <th>${status.index + 1}</th>
                                                     <th>${list.getDescripcionProd()}</th>
-                                                    <th>${list.getPrecioProd()}</th>
+                                                    <th>${list.getPrecio()}</th>
+                                                    <th>${list.getIgv()}</th>
+                                                    <th>${list.getPrecioFinal()}</th>
                                                     <th>${list.getCantProd()}</th>
                                                     <th>${list.getSubtotal()}</th>
                                                     <th>
@@ -150,13 +154,29 @@
                                     </table>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="col-sm-5">
-                                        <a href="srvCaja?accion=GenerarVenta" class="btn btn-success" onclick="print()">Generar Venta</a>
-                                        <a href="srvCaja?accion=default" class="btn btn-danger">Cancelar</a>
-                                    </div>
                                     <div class="col-sm-3 ml-auto">
                                         <input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">
                                     </div>
+                                    <form action="srvCaja" method="post">
+                                        <div class="col-sm-5">
+                                            <!-- Opciones de Boleta o Factura -->
+                                            <div class="form-group">
+                                                <label>Tipo de Comprobante</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="tipoComprobante" id="boleta" value="boleta" checked>
+                                                    <label class="form-check-label" for="boleta">Boleta</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="tipoComprobante" id="factura" value="factura">
+                                                    <label class="form-check-label" for="factura">
+                                                        Factura
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success" name="accion" value="GenerarVenta" onclick="print()">Generar Venta</button>
+                                            <button type="submit" class="btn btn-danger" name="accion" value="default" >Cancelar</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
