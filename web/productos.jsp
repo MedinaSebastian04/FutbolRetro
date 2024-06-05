@@ -25,7 +25,6 @@
         <link href="css/productosCSS.css" rel="stylesheet" type="text/css"/>
         <title>Futbol Retro - Productos</title>
 
-
     </head>
     <body>
         <div class="container-fuera">
