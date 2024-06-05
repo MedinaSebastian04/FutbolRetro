@@ -50,10 +50,17 @@
 
 
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
-                <div class="info">
+               <div class="info" style="text-align: center;">
                     <div class="container">
+                        <br><h1 style="font-size: 54px; margin-bottom: 30px; font-weight: bold;">Bienvenido a fútbol retro</h1>
+                        <hr style="border: 1px solid black; margin-bottom: 20px;">
+                        <p>Aquí es donde realizarás los diversos controles, como productos, ventas, usuarios. Si hay problemas o tienes dudas, ve a guías o informes. Gracias</p>
+                        <img src="img/sergioramos.gif" alt=""/>
                     </div>
                 </div>
+
+
+
 
 
             </div>
