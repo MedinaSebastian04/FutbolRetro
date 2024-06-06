@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString language="SQL">
+		<![CDATA[select v.idVenta, c.nombre, c.apellido, c.dni, concat(c.nombre, ' ', c.apellido) as cliente , c.telefono, c.correo, cp.numComprobantePago, DATE(v.fecha), v.precioTotal from ventas v 
+inner join clientes c on v.idCliente = c.idCliente
+inner join comprobantePago cp on v.idVenta = cp.idVenta]]>
+	</queryString>
+	<field name="idVenta" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="dni" class="java.lang.Integer"/>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.Integer"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="numComprobantePago" class="java.lang.String"/>
+	<field name="DATE(v.fecha)" class="java.sql.Date"/>
+	<field name="precioTotal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

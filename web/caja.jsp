@@ -110,13 +110,6 @@
                             <!-- Tabla para ver los productos-->
                             <!-- Tabla de ventas -->
                             <div class="derecha">
-                                <div class="titulo-impresion">
-                                    <h2 class="text-center">Factura de venta</h2>
-                                </div>
-                                <div class="cliente-info">
-                                    <p>DNI: ${c.getDni()}</p>
-                                    <p>Nombre: ${c.getNombre()} ${c.getApellido()}</p>
-                                </div>
                                 <div class="d-flex col-sm-5 ml-auto" id="nroserie">
                                     <label>Nro.Serie:</label>
                                     <input type="text" name="NroSerie" value="${nserie}" class="form-control">
@@ -173,7 +166,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-success" name="accion" value="GenerarVenta" onclick="print()">Generar Venta</button>
+                                            <button type="submit" class="btn btn-success" name="accion" value="GenerarVenta">Generar Venta</button>
                                             <button type="submit" class="btn btn-danger" name="accion" value="default" >Cancelar</button>
                                         </div>
                                     </form>

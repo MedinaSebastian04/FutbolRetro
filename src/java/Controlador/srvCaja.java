@@ -81,6 +81,24 @@ public class srvCaja extends HttpServlet {
                     c = cdao.buscarDni(dni);
                     request.setAttribute("c", c);
 
+                    numeroserie = vdao.GenerarSerie();
+                    if (numeroserie == null) {
+                        numeroserie = "00000001";
+                        request.setAttribute("nserie", numeroserie);
+                    } else {
+                        try {
+                            int incrementar = Integer.parseInt(numeroserie);
+                            GenerarSerie gs = new GenerarSerie();
+                            numeroserie = gs.NumeroSerie(incrementar);
+                            request.setAttribute("nserie", numeroserie);
+                        } catch (NumberFormatException e) {
+                            request.setAttribute("error", "Error al generar el número de serie.");
+                            request.setAttribute("nserie", numeroserie);
+                            numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
+                        }
+                    }
+                    request.setAttribute("nserie", numeroserie);
+                    request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
 
                 case "BuscarProducto":
@@ -90,6 +108,25 @@ public class srvCaja extends HttpServlet {
                     request.setAttribute("listaVentas", lista);
                     request.setAttribute("producto", p);
                     request.setAttribute("totalpagar", totalpagar);
+
+                    numeroserie = vdao.GenerarSerie();
+                    if (numeroserie == null) {
+                        numeroserie = "00000001";
+                        request.setAttribute("nserie", numeroserie);
+                    } else {
+                        try {
+                            int incrementar = Integer.parseInt(numeroserie);
+                            GenerarSerie gs = new GenerarSerie();
+                            numeroserie = gs.NumeroSerie(incrementar);
+                            request.setAttribute("nserie", numeroserie);
+                        } catch (NumberFormatException e) {
+                            request.setAttribute("error", "Error al generar el número de serie.");
+                            request.setAttribute("nserie", numeroserie);
+                            numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
+                        }
+                    }
+                    request.setAttribute("nserie", numeroserie);
+                    request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
 
                 case "Agregar":
@@ -132,6 +169,25 @@ public class srvCaja extends HttpServlet {
                     request.setAttribute("c", c);
                     request.setAttribute("totalpagar", totalpagar);
                     request.setAttribute("listaVentas", lista);
+
+                    numeroserie = vdao.GenerarSerie();
+                    if (numeroserie == null) {
+                        numeroserie = "00000001";
+                        request.setAttribute("nserie", numeroserie);
+                    } else {
+                        try {
+                            int incrementar = Integer.parseInt(numeroserie);
+                            GenerarSerie gs = new GenerarSerie();
+                            numeroserie = gs.NumeroSerie(incrementar);
+                            request.setAttribute("nserie", numeroserie);
+                        } catch (NumberFormatException e) {
+                            request.setAttribute("error", "Error al generar el número de serie.");
+                            request.setAttribute("nserie", numeroserie);
+                            numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
+                        }
+                    }
+                    request.setAttribute("nserie", numeroserie);
+                    request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
                 case "Eliminar":
                     int idItem = Integer.parseInt(request.getParameter("idItem"));
@@ -145,6 +201,25 @@ public class srvCaja extends HttpServlet {
                     request.setAttribute("c", c);
                     request.setAttribute("totalpagar", totalpagar);
                     request.setAttribute("listaVentas", lista);
+                    numeroserie = vdao.GenerarSerie();
+                    if (numeroserie == null) {
+                        numeroserie = "00000001";
+                        request.setAttribute("nserie", numeroserie);
+                    } else {
+                        try {
+                            int incrementar = Integer.parseInt(numeroserie);
+                            GenerarSerie gs = new GenerarSerie();
+                            numeroserie = gs.NumeroSerie(incrementar);
+                            request.setAttribute("nserie", numeroserie);
+                        } catch (NumberFormatException e) {
+                            request.setAttribute("error", "Error al generar el número de serie.");
+                            request.setAttribute("nserie", numeroserie);
+                            numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
+                        }
+                    }
+                    request.setAttribute("nserie", numeroserie);
+                    request.getRequestDispatcher("caja.jsp").forward(request, response);
+
                     break;
                 case "GenerarVenta":
                     //Actualizar el Stock
@@ -216,10 +291,30 @@ public class srvCaja extends HttpServlet {
                     }
 
                     cp.setIdVenta(idVenta);
-                    
+
                     cpdao.GuardarComprobantePago(cp);
+
+                    // Enviar a la comprobacion de venta
+                    // El idVenta lo convertimos a String
+                    String idVentaStr = String.valueOf(idVenta);
+                    
+                    // Nos Llevamos los parametros comprobantePago y idVenta
+                    request.setAttribute("comprobantePago", comprobantePago);
+                    request.setAttribute("idVenta", idVentaStr);
+                    request.getRequestDispatcher("ventaCompleta.jsp").forward(request, response);
                     break;
 
+                case "ComprobantePago":
+                    // Traemos los parametros
+                    String idVentaComprobante = request.getParameter("idVenta");
+                    String comprobantePago2 = request.getParameter("comprobantePago");
+                    request.setAttribute("idVenta", idVentaComprobante);
+                    if ("factura".equalsIgnoreCase(comprobantePago2)) {
+                        request.getRequestDispatcher("reportes/factura.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("reportes/boleta.jsp").forward(request, response);
+                    }
+                    break;
                 default:
                     v = new Venta();
                     lista = new ArrayList<>();
@@ -245,24 +340,7 @@ public class srvCaja extends HttpServlet {
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
             }
-            numeroserie = vdao.GenerarSerie();
-            if (numeroserie == null) {
-                numeroserie = "00000001";
-                request.setAttribute("nserie", numeroserie);
-            } else {
-                try {
-                    int incrementar = Integer.parseInt(numeroserie);
-                    GenerarSerie gs = new GenerarSerie();
-                    numeroserie = gs.NumeroSerie(incrementar);
-                    request.setAttribute("nserie", numeroserie);
-                } catch (NumberFormatException e) {
-                    request.setAttribute("error", "Error al generar el número de serie.");
-                    request.setAttribute("nserie", numeroserie);
-                    numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
-                }
-            }
-            request.setAttribute("nserie", numeroserie);
-            request.getRequestDispatcher("caja.jsp").forward(request, response);
+
         }
     }
 
