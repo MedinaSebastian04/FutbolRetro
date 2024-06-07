@@ -94,7 +94,7 @@
                                     <th>SubTotal</th>
                                 </tr>
                             </thead>
-                            <tbody id="contenido">
+                            <tbody class="contenido">
                                 <%
                                     }
                                 %>

@@ -1,6 +1,11 @@
+*{
+    list-style: none;
+    text-decoration: none;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../img/fondologin.jpg');
+    background-image: url('../img/fondoLogin.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -11,14 +16,12 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    box-sizing: border-box;
 }
 
 .container {
-    background-color: #fff;
+    background-color: #181818;
     margin: 0px 100px;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -27,9 +30,8 @@ body {
 }
 
 .login{
-    width: 400px;
-    background-color: #52BE80;
-    border: 1px solid #ddd;
+    width: 300px;
+    background-color: #25996B;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -72,23 +74,31 @@ body {
 }
 
 .controls {
+    background-color: #1A1A1A;
     margin-bottom: 15px; /* Añade espacio inferior para separar los controles entre sí */
 }
 
 .buttons {
     margin-top: 40px;
-    background-color: #717D7E ; /* Cambia el color de fondo del botón */
+    background-color: #585858; /* Cambia el color de fondo del botón */
     color: white; /* Cambia el color del texto del botón a blanco para que resalte */
     font-size: 16px; /* Ajusta el tamaño del texto del botón */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón para indicar que es interactivo */
     transition: background-color 0.3s ease; /* Añade una transición suave al cambiar el color de fondo */
+    border-color: #000000;
+}
+
+.controls:valid{
+    color: #ffff;
+    background-color: #0E6655;
+    border: 1px solid #000000;
 }
 
 .buttons:hover {
-    background-color: #4D5656 ; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+    background-color: #414141 ; /* Cambia el color de fondo al pasar el ratón sobre el botón */
 }
 .publicidad{
-    width: 900px;
+    width: 700px;
 }
 
 .publicidad img{

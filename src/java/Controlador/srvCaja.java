@@ -97,6 +97,7 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
@@ -125,6 +126,7 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
@@ -186,6 +188,7 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
                     break;
@@ -217,6 +220,7 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
 
@@ -293,7 +297,8 @@ public class srvCaja extends HttpServlet {
                     cp.setIdVenta(idVenta);
 
                     cpdao.GuardarComprobantePago(cp);
-
+                    
+                    request.setAttribute("paginaActual", "caja");
                     // Enviar a la comprobacion de venta
                     // El idVenta lo convertimos a String
                     String idVentaStr = String.valueOf(idVenta);
@@ -337,6 +342,7 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);
             }

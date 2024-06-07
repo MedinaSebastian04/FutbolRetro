@@ -1,9 +1,11 @@
 <%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     // Obtener el valor del rol desde el alcance de sesión
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String rol = usuario.getRol();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -51,6 +53,7 @@
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana productos -->
                 <div class="info">
+
                     <h2>Quejas y Ayuda</h2>
                     <div class="report-section">
                         <form action="procesarQueja.jsp" method="POST">
@@ -64,7 +67,7 @@
                     <br><br>
                     <h2>Soporte Técnico</h2>
                     <p>Si encuentras algún problema o tienes alguna duda, por favor contacta al soporte técnico enviando un correo a <a href="mailto:soporte@futbolretro.com">soporte@futbolretro.com</a>.</p>
-                
+
                 </div>
             </div>
         </div>

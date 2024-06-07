@@ -57,7 +57,7 @@
                     <!--AVISAN PLIS SI ESTA BIEN :'( -->
 
                     <div class="container-caja">
-                        <h2 class="text-center titulo" id="titulo-caja">CAJA</h2>
+                        <h2 class="text-center" id="titulo-caja">CAJA</h2>
 
                         <div class="ventana-caja">
                             <!-- Formulario de venta en el lado izquierdo -->
@@ -110,8 +110,8 @@
                             <!-- Tabla para ver los productos-->
                             <!-- Tabla de ventas -->
                             <div class="derecha">
-                                <div class="d-flex col-sm-5 ml-auto" id="nroserie">
-                                    <label>Nro.Serie:</label>
+                                <div class="nroserie">
+                                    <label>Nro. de Venta:</label>
                                     <input type="text" name="NroSerie" value="${nserie}" class="form-control">
                                 </div>
                                 <div class="scroll">
@@ -128,19 +128,19 @@
                                                 <th class="accion">Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="contenido-venta">
+                                        <tbody class="contenido-venta">
                                             <c:forEach var="list" items="${listaVentas}" varStatus="status">
                                                 <tr>
-                                                    <th>${status.index + 1}</th>
-                                                    <th>${list.getDescripcionProd()}</th>
-                                                    <th>${list.getPrecio()}</th>
-                                                    <th>${list.getIgv()}</th>
-                                                    <th>${list.getPrecioFinal()}</th>
-                                                    <th>${list.getCantProd()}</th>
-                                                    <th>${list.getSubtotal()}</th>
-                                                    <th>
+                                                    <td>${status.index + 1}</td>
+                                                    <td>${list.getDescripcionProd()}</td>
+                                                    <td>${list.getPrecio()}</td>
+                                                    <td>${list.getIgv()}</td>
+                                                    <td>${list.getPrecioFinal()}</td>
+                                                    <td>${list.getCantProd()}</td>
+                                                    <td>${list.getSubtotal()}</td>
+                                                    <td>
                                                         <a class="btn btn-danger" href="srvCaja?accion=Eliminar&idItem=${status.index}">Eliminar</a> 
-                                                    </th>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

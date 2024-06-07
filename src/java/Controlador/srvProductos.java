@@ -42,6 +42,7 @@ public class srvProductos extends HttpServlet{
                 case "Listar":
                     List lista = productodao.RecuperarRegistrosProducto();
                     request.setAttribute("listaproductos", lista);
+                    request.setAttribute("paginaActual", "producto");
                     request.getRequestDispatcher("productos.jsp").forward(request, response);
                     break;
                     

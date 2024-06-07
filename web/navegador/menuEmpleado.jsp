@@ -27,4 +27,17 @@
             <p>VENTAS</p>
         </div>
     </a>
+    
+    <a href="guia.jsp">
+        <div class="menu-tarjetas">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>GUIA</p>
+        </div>
+        
+    </a><a href="informe.jsp">
+        <div class="menu-tarjetas">
+            <i class="fa-solid fa-envelope"></i>
+            <p>INFORMES</p>
+        </div>
+    </a>
 </div>

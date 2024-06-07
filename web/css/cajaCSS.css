@@ -1,8 +1,10 @@
 .info{
-    background-color: #E5E8E8;
+    background-color: #28292B;
+
     margin: 15px;
     margin-top: 30px;
     border: 1px solid;
+    color: #ddd;
 }
 
 .container-caja{
@@ -17,14 +19,18 @@
     padding: 0;
 }
 
+.text-center{
+    margin-bottom: 20px;
+    height: 30px;
+}
+
 /* Formulario para agregar un venta */
 
 .izquierda{
-
+    width: 650px;
 }
 
 #formulario-venta{
-    width: 650px;
 
 }
 
@@ -35,37 +41,90 @@
 
 .d-flex{
     width: 100%;
-
 }
 
-
-
-/* Tabla de la venta a realizar*/
-
-#nroserie{
-    margin-bottom: 5px;
+/*Los input del formulario*/
+.form-control{
+    background-color: #1A1A1A;
+    border-color: #585858;
+    color: #ddd;
 }
 
-#tabla-ventas {
-    background-color: white;
-    margin-bottom: 0;
+.form-control:hover{
+    background-color: #1A1A1A;
+    color: #ddd;
 }
 
-.cabecera-venta{
-    text-align: center;
-    background-color: #3498DB;
-
+.form-control:invalid{
+    background-color: #1A1A1A;
+    color: #ddd;
 }
+
+.form-control:valid{
+    background-color: #1A1A1A;
+    color: #ddd;
+}
+
+/* CSS DE LA PARTE DERECHA (TABLA VENTA)*/
 
 .derecha{
     width: 700px;
 }
 
+.nroserie{
+    display: flex;
+    align-items: center; /* Alinear verticalmente el label y el input */
+    justify-content: flex-end; /* Posicionarlos a la derecha del contenedor */
+    margin-bottom: 5px;
+}
+
+.nroserie label {
+    margin-right: 10px; /* Espacio entre el label y el input */
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.nroserie input {
+    flex: 1; /* Ajustar el tamaño del input si es necesario */
+    max-width: 130px; /* Opcional: Limitar el ancho máximo del input */
+    text-align: center;
+}
+
+/* Tabla de la venta a realizar*/
 .scroll{
     height: 350px; /* Altura fija para el div */
     overflow-y: auto; /* Agregar scroll vertical si el contenido excede la altura */
     overflow-x: hidden; /* Evitar el scroll horizontal */
-    padding-right: 15px; /* Añadir espacio para evitar el solapamiento del scroll */
-    border: 1px solid #ddd; /* Bordes opcionales para visualizar mejor */
-    background-color: white;
+    padding-right: 1px; /* Añadir espacio para evitar el solapamiento del scroll */
+    border: 1px solid #585858; /* Bordes opcionales para visualizar mejor */
 }
+
+#tabla-ventas {
+    background-color: #1A1A1A;
+    margin-bottom: 0;
+    color: #ddd;
+}
+
+.cabecera-venta{
+    text-align: center;
+    background-color: #007161;
+    color: #ddd;
+
+}
+
+.table .cabecera-venta th{
+    border-top: 0;
+    border-bottom: 0;
+    vertical-align: middle;
+}
+
+
+.contenido-venta td{
+    border-top: 0;
+}
+
+.contenido-venta tr, .cabecera-venta tr{
+    border: 1px solid #585858; /* Color al borde de el body de la tabla*/
+}
+
+

@@ -43,6 +43,7 @@ public class srvVenta extends HttpServlet {
                 case "Listar":
                     List listaVentas = ventadao.RecuperarRegistrosVentas();
                     request.setAttribute("listaVentas", listaVentas);
+                    request.setAttribute("paginaActual", "ventas");
                     request.getRequestDispatcher("ventas.jsp").forward(request, response);
                     break;
                 case "eliminar":

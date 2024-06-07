@@ -1,9 +1,10 @@
 .info{
-    background-color: #E5E8E8;
+    background-color: #28292B;
     height: 640px; /* Altura*/
     margin: 15px;
     margin-top: 30px;
     border: 1px solid;
+    color: #ddd;
 }
 
 

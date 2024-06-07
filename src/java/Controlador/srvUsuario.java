@@ -41,8 +41,8 @@ public class srvUsuario extends HttpServlet {
                 case "Listar":
                     List lista = usuariodao.RecuperarRegistrosUsuario();
                     request.setAttribute("listausuarios", lista);
+                    request.setAttribute("paginaActual", "usuario");
                     request.getRequestDispatcher("usuarios.jsp").forward(request, response);
-                    
                     break;
                     
                 case "agregar":

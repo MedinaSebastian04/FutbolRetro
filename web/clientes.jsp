@@ -69,23 +69,23 @@
                                 <h3 class="text-center">Registro de Clientes</h3>
                                 <form id="formulario-cliente" action="srvCliente" method="post">
                                     <div class="form-group">
-                                        <label for="dni">DN:</label>
+                                        <label for="dni">Dni:</label>
                                         <input type="number" class="form-control" id="dni" name="dni" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getDni() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nombre">NOMBRE:</label>
+                                        <label for="nombre">Nombre:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getNombre() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="apellido">APELLIDO:</label>
+                                        <label for="apellido">Apellido:</label>
                                         <input type="text" class="form-control" id="apellido" name="apellido" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getApellido() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="telefono">TELÉFONO:</label>
+                                        <label for="telefono">Teléfono:</label>
                                         <input type="tel" class="form-control" id="telefono" name="telefono" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getTelefono() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="correo">CORREO:</label>
+                                        <label for="correo">Correo:</label>
                                         <input type="email" class="form-control" id="correo" name="correo" value="<%= (clienteSeleccionado != null ? clienteSeleccionado.getCorreo() : "")%>" required>
                                     </div>
                                     <div class="btn-group">
@@ -109,7 +109,7 @@
                                                 <th>ACCIONES</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="contenido">
+                                        <tbody class="contenido">
 
                                             <%
                                                 if (listaClientes != null) {

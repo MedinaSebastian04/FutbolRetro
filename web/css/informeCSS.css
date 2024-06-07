@@ -1,9 +1,32 @@
 .info{
-    background-color: #E5E8E8;
+    background-color: #28292B;
     height: 640px; /* Altura*/
     margin: 15px;
     margin-top: 30px;
     border: 1px solid;
+    color: #ddd;
+    padding: 20px;
+}
+
+.form-control{
+    background-color: #1A1A1A;
+    border-color: #585858;
+    color: #ddd;
+}
+
+.form-control:hover{
+    background-color: #1A1A1A;
+    color: #ddd;
+}
+
+.form-control:invalid{
+    background-color: #1A1A1A;
+    color: #ddd;
+}
+
+.form-control:valid{
+    background-color: #1A1A1A;
+    color: #ddd;
 }
 
 

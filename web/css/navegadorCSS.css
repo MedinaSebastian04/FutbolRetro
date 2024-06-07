@@ -4,7 +4,7 @@
 }
 body{
     font-family: Arial, sans-serif;
-    background-image: url('../img/fondologin.jpg');
+    background-image: url('../img/fondoSistema.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,17 +18,16 @@ body{
 }
 
 .container-fuera{
-    background-color: #fff;
+    background-color: #181818;
     margin: 0px 100px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
 .container-dentro{
-    background-color: #52BE80;
-    border: 1px solid #ddd;
+    background-color: #25996B;
+    border: 1px solid #25996B;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 1450px;
@@ -47,45 +46,47 @@ body{
     display: flex;
     gap: 9px;
     justify-content: center;
-    padding: 9px;
-    background-color: #EAEDED;
+    background-color: #202020;
+    padding: 5px;
 }
 
 .menu a{
     color: #000000;
     list-style: none;
     text-decoration: none;
+    height: 100px;
 }
 
 /*div de cada menu (caja, cliente, usuario, etc..)*/
 .menu-tarjetas{
-    background-color: #A9DFBF;
+    background-color: #005A44;
+    color: #ffffff;
     padding: 10px;
     width: 125px;
-    height: 98px;
+    height: 100%;
     text-align: center;
     cursor: pointer;
     box-sizing: border-box;
-    line-height: 1;
 }
 
 
 /*Tamaño para los iconos del menu*/
 .menu-tarjetas i{
     font-size: 45px;
-    height: 45px;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 10px;
 }
 
 .menu-tarjetas p{
-    margin: 16px 0px;
-    width: 110px;
+    margin: 0;
     height: 18px;
 }
-.menu-tarjetas:hover{
-    background-color: #E5E8E8;
-    border: 1px solid black;
+
+.menu-tarjetas:hover {
+    background-color: #272727;
+}
+
+.menu a.activo .menu-tarjetas {
+    background-color: #272727;
 }
 
 /*div Salir*/

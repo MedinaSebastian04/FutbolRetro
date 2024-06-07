@@ -59,7 +59,7 @@
 
                 <!-- Aqui irán las diferentes ventanas (solo es copiar el mismo formato, crear un jsp con nombre "Productos" y aqui empezar a programar-->
                 <!-- Aca puedes cambiar el nombre del class y hacer un css nuevo para este div que sera la ventana usuarios -->
-                <div class="info background-gif">
+                <div class="info">
                     <div class="container-usuarios">
                         <div class="ventana-usuarios">
                             <!-- Lado izquierdo: Formulario de registro de usuarios -->
@@ -67,30 +67,30 @@
                                 <h3 class="text-center">Registro de Usuarios</h3>
                                 <form class="formulario-usuario" action="srvUsuario" method="post">
                                     <div class="form-group">
-                                        <label for="nombre"style="padding: 13px;">NOMBRE:</label>
+                                        <label for="nombre">Nombre:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getNombre() : "")%>"required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="apellido"style="padding: 13px;">APELLIDO:</label>
+                                        <label for="apellido">Apellido:</label>
                                         <input type="text" class="form-control" id="apellido" name="apellido" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getApellido() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dni"style="padding: 13px;">DNI:</label>
+                                        <label for="dni">Dni:</label>
                                         <input type="number" class="form-control" id="dni" name="dni" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getDni() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="usuario"style="padding: 13px;">USUARIO:</label>
+                                        <label for="usuario">Usuario:</label>
                                         <input type="text" class="form-control" id="usuario" name="usuario" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getUsuario() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="contrasena"style="padding: 13px;">CONTRASEÑA:</label>
+                                        <label for="contrasena">Contraseña:</label>
                                         <input type="password" class="form-control" id="contrasena" name="contrasena" value="<%= (usuarioSeleccionado != null ? usuarioSeleccionado.getClave() : "")%>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="rol"style="padding: 13px;">ROL:</label>
+                                        <label for="rol">Rol:</label>
                                         <select class="form-control" id="rol" name="rol" required>
-                                            <option value="empleado" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("empleado") ? "selected" : "") : "")%>>EMPLEADO</option>
-                                            <option value="administrador" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("administrador") ? "selected" : "") : "")%>>ADMINISTRADOR</option>
+                                            <option value="empleado" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("empleado") ? "selected" : "") : "")%>>Empleado</option>
+                                            <option value="administrador" <%= (usuarioSeleccionado != null ? (usuarioSeleccionado.getRol().equals("administrador") ? "selected" : "") : "")%>>Administrador</option>
                                         </select>
                                     </div>
                                     <div class="btn-group">
