@@ -8,10 +8,12 @@
     padding: 20px;
 }
 
+/*Los input del formulario*/
 .form-control{
     background-color: #1A1A1A;
     border-color: #585858;
     color: #ddd;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:hover{
@@ -27,6 +29,13 @@
 .form-control:valid{
     background-color: #1A1A1A;
     color: #ddd;
+}
+
+/* Estilo para cuando el campo está enfocado */
+.form-control:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
 }
 
 

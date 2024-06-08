@@ -10,15 +10,15 @@
     <body>
         <div class="container">
             <div class="login">
-                <h2>LOGIN</h2>
                 <div class="logo">
-                    <img src="img/logo2.png" alt="logo.png"/>
+                    <img src="img/logo.png" alt="logo.png"/>
                 </div>
                 <form action="srvLogin" method="post">
-                    <h3>User</h3>
-                    <input class="controls" type="text" name="txtusuario" placeholder="Usuario" required>
-                    <h3>Password</h3>
-                    <input class="controls" type="password" name="txtclave" placeholder="Contraseña" required>
+                    <h2>LOGIN</h2>
+                    <h3>User:</h3>
+                    <input class="controls" type="text" name="txtusuario" placeholder="Usuario" autocomplete="off" required>
+                    <h3>Password:</h3>
+                    <input class="controls" type="password" name="txtclave" placeholder="Contraseña" autocomplete="off" required>
                     <input class="buttons" type="submit" name="accion" value="INGRESAR">
                     <br>
                     <%
@@ -30,7 +30,7 @@
                 </form>
             </div>
             <div class="publicidad">
-                <img src="img/loginFondo.jpg" alt="loginFondo.jpg"/>
+                <img src="img/publicidadLogin.webp" alt="loginFondo.jpg"/>
             </div>
         </div>
     </body>

@@ -57,49 +57,49 @@
                     <!--AVISAN PLIS SI ESTA BIEN :'( -->
 
                     <div class="container-caja">
-                        <h2 class="text-center" id="titulo-caja">CAJA</h2>
+                        <h2 class="text-center" id="titulo-caja">CAJA DE VENTA</h2>
 
                         <div class="ventana-caja">
                             <!-- Formulario de venta en el lado izquierdo -->
                             <div class="izquierda">
                                 <form id="formulario-venta" action="srvCaja" method="post">
-                                    <div class="card-body">
+                                    <div class="body-datos">
 
                                         <label>Datos del Cliente</label>
-                                        <div class="form-group d-flex cliente">
-                                            <div class="col-md-4 d-flex" id="buscar">
+                                        <div class="form-group">
+                                            <div class="buscarCliente">
                                                 <input type="text" name="dnicliente" value="${c.getDni()}" placeholder="DNI" class="form-control">
-                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarCliente" id="buscarcliente">Buscar</button>
+                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarCliente">Buscar</button>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input type="text" name="nombrecliente" value="${c.getNombre()} ${c.getApellido()}" placeholder="Datos Cliente" class="form-control">
+                                            <div class="cliente">
+                                                <input type="text" name="nombrecliente" placeholder="Datos Cliente" value="${c.getNombre()} ${c.getApellido()}" class="form-control">
                                             </div>
                                         </div>
 
                                         <label>Datos del producto</label>
-                                        <div class="form-group d-flex producto">
-                                            <div class="col-md-4 d-flex buscar">
+                                        <div class="form-group">
+                                            <div class="buscarProducto">
                                                 <input type="text" name="codigoproducto" value="${producto.getIdProd()}" placeholder="Codigo" class="form-control">
-                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarProducto" id="buscarproducto">Buscar</button>
+                                                <button type="submit" class="btn btn-outline-info" name="accion" value="BuscarProducto">Buscar</button>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="producto">
                                                 <input type="text" name="nombreproducto" value="${producto.getDescripcion()}" placeholder="Datos Producto" class="form-control">
                                             </div>
                                         </div>
 
-                                        <div class="form-group d-flex producto">
-                                            <div class="col-md-4 d-flex">
+                                        <div class="form-group">
+                                            <div class="productoPrecio">
                                                 <input type="text" name="precio" value="${producto.getPrecio()}" class="form-control" placeholder="S/. 0.00" >
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="productoCantidad">
                                                 <input type="number" name="cant" value="1" placeholder="Cantidad" class="form-control">
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="productoStock">
                                                 <input type="text" name="stock" value="Stock: ${producto.getStock()}" placeholder="Stock" class="form-control">
                                             </div>
                                         </div>
                                         <!-- BOTON PARA AGREGAR PRODUCTO AL REGISTRO -->
-                                        <div class="form-group">
+                                        <div class="boton-agregar">
                                             <button type="submit" class="btn btn-outline-info" name="accion" value="Agregar" id="agregarventa">Agregar</button>
                                         </div>
                                     </div>
@@ -118,28 +118,28 @@
                                     <table class="table" id="tabla-ventas">
                                         <thead class="cabecera-venta">
                                             <tr>
-                                                <th>Nro</th>
-                                                <th>Descripcion</th>
-                                                <th>Precio</th>
+                                                <th style="width: 55px;">Nro</th>
+                                                <th style="width: 250px;">Descripcion</th>
+                                                <th >Precio</th>
                                                 <th>IGV</th>
-                                                <th>Precio Final</th>
+                                                <th>Precio F.</th>
                                                 <th>Cantidad</th>
-                                                <th>SubTotal</th>
+                                                <th >SubTotal</th>
                                                 <th class="accion">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody class="contenido-venta">
                                             <c:forEach var="list" items="${listaVentas}" varStatus="status">
                                                 <tr>
-                                                    <td>${status.index + 1}</td>
-                                                    <td>${list.getDescripcionProd()}</td>
-                                                    <td>${list.getPrecio()}</td>
-                                                    <td>${list.getIgv()}</td>
-                                                    <td>${list.getPrecioFinal()}</td>
-                                                    <td>${list.getCantProd()}</td>
-                                                    <td>${list.getSubtotal()}</td>
-                                                    <td>
-                                                        <a class="btn btn-danger" href="srvCaja?accion=Eliminar&idItem=${status.index}">Eliminar</a> 
+                                                    <td style="text-align: center; vertical-align: middle;">${status.index + 1}</td>
+                                                    <td style="vertical-align: middle;">${list.getDescripcionProd()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">${list.getPrecio()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">${list.getIgv()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">${list.getPrecioFinal()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">${list.getCantProd()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">${list.getSubtotal()}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <a class="btn btn-danger" href="srvCaja?accion=Eliminar&idItem=${status.index}"><i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></a> 
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -147,13 +147,13 @@
                                     </table>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="col-sm-3 ml-auto">
+                                    <div class="montoTotal">
                                         <input type="text" name="txtTotal" value="S/. ${totalpagar}0" class="form-control">
                                     </div>
                                     <form action="srvCaja" method="post">
                                         <div class="col-sm-5">
                                             <!-- Opciones de Boleta o Factura -->
-                                            <div class="form-group">
+                                            <div class="comprobantePago">
                                                 <label>Tipo de Comprobante</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="tipoComprobante" id="boleta" value="boleta" checked>
@@ -161,9 +161,7 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="tipoComprobante" id="factura" value="factura">
-                                                    <label class="form-check-label" for="factura">
-                                                        Factura
-                                                    </label>
+                                                    <label class="form-check-label" for="factura">Factura</label>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success" name="accion" value="GenerarVenta">Generar Venta</button>

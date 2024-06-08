@@ -53,7 +53,8 @@ public class srvCaja extends HttpServlet {
     String numeroComprobantePago;
 
     DecimalFormat df = new DecimalFormat("#.##");
-
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -108,6 +109,13 @@ public class srvCaja extends HttpServlet {
                     request.setAttribute("c", c);
                     request.setAttribute("listaVentas", lista);
                     request.setAttribute("producto", p);
+                    
+                    
+                    // Formatear el total a pagar con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String totalpagarFormateado = df.format(totalpagar);
+                    // Convertir el igv formateado de nuevo a un número double
+                    totalpagar = Double.parseDouble(totalpagarFormateado);
                     request.setAttribute("totalpagar", totalpagar);
 
                     numeroserie = vdao.GenerarSerie();
@@ -146,8 +154,14 @@ public class srvCaja extends HttpServlet {
                     igv = Double.parseDouble(igvFormateado);
 
                     precioFinal = precio + igv;
+                    // Formatear el precio final con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String preciofinalFormateado = df.format(precioFinal);
+                    // Convertir el precio final formateado de nuevo a un número double
+                    precioFinal = Double.parseDouble(preciofinalFormateado);
+                    
                     cant = Integer.parseInt(request.getParameter("cant"));
-
+                    
                     subtotal = precioFinal * cant;
                     // Formatear el subtotal con solo dos decimales
                     df.setMaximumFractionDigits(2);
@@ -168,8 +182,17 @@ public class srvCaja extends HttpServlet {
                     for (int i = 0; i < lista.size(); i++) {
                         totalpagar = totalpagar + lista.get(i).getSubtotal();
                     }
+                    
+                    
                     request.setAttribute("c", c);
+                    
+                    // Formatear el total a pagar con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String totalpagarFormateado2 = df.format(totalpagar);
+                    // Convertir el igv formateado de nuevo a un número double
+                    totalpagar = Double.parseDouble(totalpagarFormateado2);
                     request.setAttribute("totalpagar", totalpagar);
+                    
                     request.setAttribute("listaVentas", lista);
 
                     numeroserie = vdao.GenerarSerie();
@@ -202,7 +225,14 @@ public class srvCaja extends HttpServlet {
                         }
                     }
                     request.setAttribute("c", c);
+                    
+                    // Formatear el total a pagar con solo dos decimales
+                    df.setMaximumFractionDigits(2);
+                    String totalpagarFormateado3 = df.format(totalpagar);
+                    // Convertir el igv formateado de nuevo a un número double
+                    totalpagar = Double.parseDouble(totalpagarFormateado3);
                     request.setAttribute("totalpagar", totalpagar);
+                    
                     request.setAttribute("listaVentas", lista);
                     numeroserie = vdao.GenerarSerie();
                     if (numeroserie == null) {
@@ -342,6 +372,8 @@ public class srvCaja extends HttpServlet {
                             numeroserie = "00000001"; // Asignar un valor predeterminado en caso de error
                         }
                     }
+                    
+                    request.setAttribute("totalpagar", totalpagar);
                     request.setAttribute("paginaActual", "caja");
                     request.setAttribute("nserie", numeroserie);
                     request.getRequestDispatcher("caja.jsp").forward(request, response);

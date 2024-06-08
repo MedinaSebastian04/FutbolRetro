@@ -107,17 +107,9 @@ public class VentaDAO extends Conexion {
     
     //metodo para eliminar registro de venta
     public void EliminarRegistroVenta(int id) {
-        String SQL1 = "DELETE FROM detalleVenta  WHERE idVenta  =?;";
+        String SQL = "DELETE FROM ventas WHERE idVenta  =?;";
         try {
-            ps = con.prepareStatement(SQL1);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (Exception ex) {
-            System.out.println("ERROR al eliminar registro producto... " + ex);
-        }
-        String SQL2 = "DELETE FROM ventas WHERE idVenta  =?;";
-        try {
-            ps = con.prepareStatement(SQL2);
+            ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception ex) {

@@ -41,6 +41,7 @@
     background-color: #1A1A1A;
     border-color: #585858;
     color: #ddd;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:hover{
@@ -56,6 +57,33 @@
 .form-control:valid{
     background-color: #1A1A1A;
     color: #ddd;
+}
+
+/* Estilo para cuando el campo está enfocado */
+.form-control:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+}
+
+/* Estilos para autocompletado en Chrome, Safari y Edge */
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus,
+input.form-control:-webkit-autofill:active{
+    background-color: #1A1A1A !important;
+    color: #ddd !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+    -webkit-box-shadow: 0 0 0 30px #1A1A1A inset !important;
+    -webkit-text-fill-color: #ddd !important;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Estilos para autocompletado en Firefox */
+input.form-control:-moz-autofill {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    color: #ddd !important;
+    transition: border-color 0.5s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /*Botones del formulario*/

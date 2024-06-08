@@ -14,40 +14,99 @@
 .ventana-caja{
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
     padding: 0;
 }
 
+/* titulo */
 .text-center{
-    margin-bottom: 20px;
-    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    font-size: 33px;
+    font-weight: 900; /* Peso de la fuente */
+    letter-spacing: 2px; /* Espaciado entre letras */
 }
 
 /* Formulario para agregar un venta */
 
 .izquierda{
-    width: 650px;
+    width: 540px;
+    margin-top: 43px;
 }
 
 #formulario-venta{
 
 }
 
-.card-body{
+.body-datos{
     border: 1px solid #2874A6;
     padding: 15px;
+    box-sizing: border-box;
 }
 
-.d-flex{
+.form-group{
+    display: flex;
+    margin: 0px 10px;
+    margin-bottom: 1rem;
+}
+
+/* Buscar y encontrar cliente*/
+.buscarCliente{
+    display: flex;
+    margin-right: 20px;
+}
+
+.buscarCliente input{
+    width: 110px;
+}
+
+.buscarCliente button{
+    width: 76px;
+}
+
+.cliente{
     width: 100%;
 }
 
-/*Los input del formulario*/
+/* Buscar y encontrar producto*/
+.buscarProducto{
+    display: flex;
+    margin-right: 20px;
+}
+
+.buscarProducto input{
+    width: 110px;
+}
+
+.buscarProducto button{
+    width: 76px;
+}
+
+.producto{
+    width: 100%;
+}
+
+.productoPrecio{
+    width: 186px;
+    margin-right: 20px;
+}
+
+.productoCantidad{
+    width: 90px;
+    margin-right: 20px;
+}
+
+.productoStock{
+    width: 172px;
+}
+
+/*Estilo para los input del formulario*/
 .form-control{
     background-color: #1A1A1A;
     border-color: #585858;
     color: #ddd;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:hover{
@@ -65,10 +124,42 @@
     color: #ddd;
 }
 
+/* Estilo para cuando el campo está enfocado */
+.form-control:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+}
+
+/* Estilos para autocompletado en Chrome, Safari y Edge */
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus,
+input.form-control:-webkit-autofill:active {
+    background-color: #1A1A1A !important;
+    color: #ddd !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    -webkit-box-shadow: 0 0 0 30px #1A1A1A inset !important;
+    -webkit-text-fill-color: #ddd !important;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Estilos para autocompletado en Firefox */
+input.form-control:-moz-autofill {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    color: #ddd !important;
+    transition: border-color 0.5s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* BOTON*/
+
+.boton-agregar{
+    margin: 0px 10px;
+}
 /* CSS DE LA PARTE DERECHA (TABLA VENTA)*/
 
 .derecha{
-    width: 700px;
+    
 }
 
 .nroserie{
@@ -121,10 +212,28 @@
 
 .contenido-venta td{
     border-top: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .contenido-venta tr, .cabecera-venta tr{
     border: 1px solid #585858; /* Color al borde de el body de la tabla*/
+}
+
+.montoTotal{
+    display: flex;
+    margin-top: 5px;
+}
+
+.montoTotal input{
+    width: 150px;
+    padding: 6px 0px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 50px;
+}
+.comprobantePago{
+    margin-bottom: 20px;
 }
 
 

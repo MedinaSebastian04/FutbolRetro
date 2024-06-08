@@ -61,7 +61,7 @@
 
 #disabled{
     pointer-events: none;
-    cursor: default;
+    cursor: not-allowed;
     background-color: #F5B7B1; /* Estilo para mostrar que está deshabilitado */
     border-color: #F5B7B1;
     text-decoration: none;
